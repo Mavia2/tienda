@@ -10,6 +10,7 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+Route::group(['middleware'=>'auth'], function(){
 Route::post('stock/stock/update2', 'StockController@update2');
 Route::get('/', function () {
     return Redirect::to('dashboard');
@@ -58,4 +59,7 @@ Route::get('dashboard/calc', 'DashController@calc');
 Route::resource('dashboard','DashController');
 #Route::get('compra/actual2', 'ActualController@show');
 
-Route::get('cal', 'gCalendarController@index2');
+Route::get('cal', 'gCalendarController@index2');});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
