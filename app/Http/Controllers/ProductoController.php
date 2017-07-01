@@ -57,8 +57,7 @@ public function store (Request $request)
     $producto->id_categoria=$request->get('categoria');
     $producto->id_estacion=$request->get('estacion');
     $producto->id_tipo=$request->get('tipo');
-    $producto->id_marca=$request->get('marca');    
-   
+    $producto->id_marca=$request->get('marca');  
     $producto->save();
     return Redirect::to('stock/producto');
 
