@@ -89,7 +89,7 @@ class DashController extends Controller
      $data[2]=$data[2]+26;
      $data[3]=$data[3]+24;
      $data[4]=$data[4]+18;
-     $data[5]=$data[5]+10;
+     $data[5]=$data[5]+15;
      $chartjs1 = app()->chartjs
         ->name('lineChartTest')
         ->type('line')
