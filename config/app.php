@@ -165,6 +165,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
 
 
@@ -234,8 +235,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
-
-
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
     ],
-
 ];

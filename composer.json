@@ -11,7 +11,8 @@
         "maatwebsite/excel": "^2.1",
         "google/apiclient": "1.1.7",
         "spatie/laravel-google-calendar": "^1.0",
-        "fx3costa/laravelchartjs": "^2.2"
+        "fx3costa/laravelchartjs": "^2.2",
+        "sammyk/laravel-facebook-sdk": "^3.0"
         
     },
     "require-dev": {
