@@ -16,11 +16,11 @@
 <h4>
  <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12 " style="margin-top: 4px">
    <span style="margin-left: 20px"><i class="fa fa-envelope-o"></i>        </span>
-   <span class="badge" style="margin-top: -3px; margin-left: 10px">5</span>
+   <span class="badge" style="margin-top: -3px; margin-left: 10px" id="mensajes">{{number_format(0,0,',','.')}}</span>
 </div>  
 <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12 " style="margin-top: 4px">
   <span><i class="fa fa-thumbs-up"></i></span> 
-  <span class="pull-right">5.235</span>           
+  <span class="pull-right" id="likes">{{number_format(0,0,',','.')}}</span>           
  </div>
  </h4>
 @endsection
@@ -95,7 +95,32 @@
 
 <script>
 $(document).ready(function() {
-
+  
+           $.ajax({
+                      url: 'https://graph.facebook.com/1470907659896279?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=fan_count,unread_message_count',
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function(data){ 
+              
+               $('#likes').html(data.fan_count);
+                $('#mensajes').html(data.unread_message_count);
+              }
+  });
+ setInterval(function() {
+           $.ajax({
+                      url: 'https://graph.facebook.com/1470907659896279?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=fan_count,unread_message_count',
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function(data){ 
+              
+               $('#likes').html(data.fan_count);
+                $('#mensajes').html(data.unread_message_count);
+              }
+  })
+        }, 5000);
+    
+      
+    
           
       $('.createpedido').click(function(e){      
         var form = $(this).parents('form:first');
@@ -580,7 +605,7 @@ $(document).ready(function() {
         }
         return false;
     }
-});
+  });
 </script>
 @endpush
 
