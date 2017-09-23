@@ -59,10 +59,7 @@ Route::get('dashboard/calc', 'DashController@calc');
 Route::resource('dashboard','DashController');
 #Route::get('compra/actual2', 'ActualController@show');
 
-Route::get('cal', 'gCalendarController@index2');});
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+Route::get('cal', 'gCalendarController@index2');
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb)
 {
     // Send an array of permissions to request
@@ -152,3 +149,8 @@ Route::match(['get', 'post'], '/facebook/page-tab', function(SammyK\LaravelFaceb
     }
 });
 
+
+});
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

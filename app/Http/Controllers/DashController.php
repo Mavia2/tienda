@@ -16,12 +16,16 @@ class DashController extends Controller
    public function index(Request $request)
    {
 	$todo=DB::table('dash')
-    ->where('usuario','s/u')
+    ->where('tipo','t')
     ->orderBy('fecha')
     ->get();
 
     $pedido=DB::table('dash')
-    ->where('usuario','!=','s/u')
+    ->where('tipo','p')
+    ->get();
+
+    $agenda=DB::table('dash')
+    ->where('tipo','a')
     ->get();
 
     $stock=DB::table('stock')  
@@ -90,6 +94,8 @@ class DashController extends Controller
      $data[3]=$data[3]+24;
      $data[4]=$data[4]+18;
      $data[5]=$data[5]+15;
+     $data[6]=$data[6]+4;
+     $data[7]=$data[7]+14;
      $chartjs1 = app()->chartjs
         ->name('lineChartTest')
         ->type('line')
@@ -152,7 +158,7 @@ class DashController extends Controller
 
        
       
-            return view("layouts.dash",compact('chartjs1','chartjs2'),["pedido"=>$pedido,"todo"=>$todo,"stocktotal"=>$stocktotal,"stockcomp"=>$stockcomp,"stockre"=>$stockre,"stockss"=>$stockss,"stockbbe"=>$stockbbe,"stockbba"=>$stockbba,"vtacon"=>$vtacon,"vtapcon"=>$vtapcon]);
+            return view("layouts.dash",compact('chartjs1','chartjs2'),["pedido"=>$pedido,"agenda"=>$agenda,"todo"=>$todo,"stocktotal"=>$stocktotal,"stockcomp"=>$stockcomp,"stockre"=>$stockre,"stockss"=>$stockss,"stockbbe"=>$stockbbe,"stockbba"=>$stockbba,"vtacon"=>$vtacon,"vtapcon"=>$vtapcon]);
     
     }
 
@@ -200,7 +206,8 @@ class DashController extends Controller
             }
             $todo->todo=$request->get('todo');
             $todo->usuario=$request->get('usuario');
-            $todo->fecha=$f->format('Y-m-d');           
+            $todo->fecha=$f->format('Y-m-d');  
+            $todo->tipo='p';        
             $todo->save(); 
             $response = [
                 'msg' => 'Pedido guardado',
@@ -216,6 +223,37 @@ class DashController extends Controller
         $todo->comment=$request->get('comentarios');
         $todo->todo=$request->get('todo');
         $todo->checkk=$request->get('check'); 
+        $todo->usuario=$request->get('usuario');   
+        $todo->update(); 
+        return Redirect::back();        
+                   
+        }
+        if($request->get('tipo')==6){
+          if($request->ajax()) {
+            $f=Carbon::now();
+            $todo=new Dash;
+            if (!empty($request->get('comentarios'))){
+            $todo->comment=$request->get('comentarios');
+            }            
+            $todo->usuario=$request->get('usuario');
+            $todo->fecha=$f->format('Y-m-d'); 
+            $todo->tel=$request->get('tel');
+            $todo->tipo='a';        
+            $todo->save(); 
+            $response = [
+                'msg' => 'Pedido guardado',
+            ];
+            
+            return Response::json($todo);
+
+           }
+        return Redirect::back();   
+        }
+        if($request->get('tipo')==7){
+        $todo=Dash::findOrFail($request->get('id')); 
+        $todo->comment=$request->get('comentarios');
+        $todo->todo='1';
+        $todo->tel=$request->get('tel');
         $todo->usuario=$request->get('usuario');   
         $todo->update(); 
         return Redirect::back();        

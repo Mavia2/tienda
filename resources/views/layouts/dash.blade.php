@@ -16,7 +16,7 @@
 <h4>
  <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12 " style="margin-top: 4px">
    <span style="margin-left: 20px"><i class="fa fa-envelope-o"></i>        </span>
-   <span class="badge" style="margin-top: -3px; margin-left: 10px" id="mensajes">{{number_format(0,0,',','.')}}</span>
+   <span class="badge" style="margin-top: -3px; margin-left: 8px" id="mensajes">{{number_format(0,0,',','.')}}</span>
 </div>  
 <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12 " style="margin-top: 4px">
   <span><i class="fa fa-thumbs-up"></i></span> 
@@ -129,7 +129,7 @@ $(document).ready(function() {
         e.preventDefault();
         var _token = form.find('input[name=_token]').val();
         var todo = form.find('select[name=todo]').val();
-        var usuario = form.find('input[name=usuario]').val();
+        var usuario = form.find('input[name=usuario]').val();        
         var comentarios = form.find('textarea[name=comentarios]').val();
         var tipo = form.find('input[name=tipo]').val();
         console.log(comentarios);
@@ -167,6 +167,53 @@ $(document).ready(function() {
               });
               form[0].reset();                
       });
+
+      $('.createagenda').click(function(e){      
+        var form = $(this).parents('form:first');
+        var method = 'Aa';
+        console.log(method);        
+        e.preventDefault();
+        var _token = form.find('input[name=_token]').val();
+        var todo = form.find('select[name=todo]').val();
+        var usuario = form.find('input[name=usuario]').val();
+        var tel = form.find('input[name=tel]').val();
+        var comentarios = form.find('textarea[name=comentarios]').val();
+        var tipo = form.find('input[name=tipo]').val();
+        console.log(comentarios);
+        var url = form.attr('action');
+        console.log(url);
+        var target = form.find('.success');
+              $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: {todo:todo, tel:tel, usuario:usuario, comentarios:comentarios, _token:_token,tipo:tipo}
+                })
+              .done(function(data) {
+                if (todo==3) {
+                var clase="danger";
+                }
+                else if (todo==3) {
+                  var clase="danger";
+                }
+                var clase="";
+               $('#tabla-agenda').append("<tr class='"+clase+"' data-id='"+data.iddash+"'><td><span data-toggle='modal' data-target='#mpModal'>"+usuario+"</span></td><td><span data-toggle='modal' data-target='#mpModal'>"+tel+"</span></td><td><span data-toggle='modal' data-target='#mpModal'>"+comentarios+"</span></td><td><a href='#'class='btn btn-link pull-right boton-delete2' style='padding-top:0;padding-bottom:0' data-comment='"+comentarios+"' data-usuario='"+usuario+"'><i class='fa fa-trash' aria-hidden='true'></i></a></td></tr>");
+              })
+
+              .fail(function(data) {
+                var errors = data.responseJSON;
+                var errorsHtml = " ";
+                $.each( errors, function( key, value ) {
+                    errorsHtml += "<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button><p>"+ value[0] + "</p></div>"; //showing only the first error.
+                });
+                target.html(errorsHtml);
+                $('.submitbutton').html("<i class='fa fa-flash'></i>&nbspResend").attr('disabled', false);
+                })
+              .always(function() {
+                console.log("complete");
+              });
+              form[0].reset();                
+      });
     $('.boton-delete').click(function(e){
           console.log('inicio Eliminar');
           e.preventDefault();
@@ -180,6 +227,22 @@ $(document).ready(function() {
           modal.find('input[name=id]').val(iddash);
           console.log('usuario:'+usuario);
           $('#epModal').modal('show');
+       });
+
+       $('.boton-deletes').click(function(e){
+          console.log('inicio Eliminar');
+          e.preventDefault();
+          var row = $(this).parents('tr');
+          var iddash = row.data('id');
+          console.log('id trash:'+iddash);
+          var modal =$('#eaModal');
+          var usuario =$(this).data('usuario');         
+          modal.find('input[name=usuario]').val(usuario);
+          modal.find('input[name=tel]').val($(this).data('tel'));
+          modal.find('textarea[name=comentarios]').val($(this).data('comment'));
+          modal.find('input[name=id]').val(iddash);
+          console.log('usuario:'+usuario);
+          $('#eaModal').modal('show');
 
 
       });
@@ -208,6 +271,33 @@ $(document).ready(function() {
 
                  console.log('Fin Eliminar'); 
                 $('#epModal').modal('hide'); 
+              })
+          });
+     $('#btn-deletes').click(function(){
+            var form = $(this).parents('.modal-content');                 
+            var _token = form.find('input[name=_token]').val();
+            console.log(_token);  
+            var tipo = form.find('input[name=tipo]').val();
+            var iddash = form.find('input[name=id]').val();               
+            var url = 'http://tienda.ar/dashboard/update2';
+            console.log(url);
+            console.log('id antes ajax:'+iddash);            
+                        
+            // jQuery.noConflict();
+
+              $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: {_token:_token,tipo:tipo,iddash:iddash}
+              })
+              .done(function(data) {
+                console.log('id despues ajax:'+data.iddash);
+                
+                $('#p'+iddash).remove(); 
+
+                 console.log('Fin Eliminar'); 
+                $('#eaModal').modal('hide'); 
               })
           });
 

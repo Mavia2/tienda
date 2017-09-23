@@ -121,7 +121,7 @@
                   <td>{{$w->style}}</td>
                   <td style="text-align: center">{{$w->talle}}</td>                  
                  
-                  <td style="text-align: center">U$S {{number_format($w->precio,0)}}</td>
+                  <td style="text-align: center">U$S {{number_format($w->precio,2)}}</td>
                   
                   <td style="text-align: center">{{number_format($w->cant,0)}}</td>
                   <td> 
@@ -186,7 +186,7 @@
                   <td style="text-align: center;width:120px"> {!! Form::select('tipo',$tipo1,5,['class'=>'form-control','id'=>'prod'])!!}
 
                   </td>
-                  <td style="text-align: center;width:100px"><input name="precio" id="precio" type="number" placeholder="U$S..." class="form-control" required value=""></input></td>
+                  <td style="text-align: center;width:100px"><input name="precio" id="precio" placeholder="U$S..." class="form-control" required value=""></input></td>
                   <td style="text-align: center; width:100px"><input name="cant" id="cant" type="number" class="form-control" required value=""></input></td>                                                       
                   <td style="text-align: center"> 
                      <input type="hidden" value="{{$orden->idorden}}" name="idorden">
