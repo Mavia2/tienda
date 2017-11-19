@@ -54,9 +54,9 @@
           
           <th style="text-align: center">Id stock</th>
           <th style="text-align: center">Codebar</th>
+          <th style="text-align: center">Orden</th>
           <th style="text-align: center">imagen</th>
-          <th style="text-align: center">Producto</th>
-         
+          <th style="text-align: center">Producto</th>          
           <th style="text-align: center">Estado</th>
           <th style="text-align: center">Talle</th>
           <th style="text-align: center">Costo</th>         
@@ -67,7 +67,7 @@
          <tfoot>
                      <td></td>
                     <td></td>
-                    
+                    <td></td>
                     <td></td>
                     <td></td>                   
                     <th style="text-align: center">Cantidad: {{$ven->cant}}</th>
@@ -83,7 +83,8 @@
             @foreach($detaven as $w)                
                 <tr>
                   <td>{{$w->idstock}}</td>  
-                  <td>{{$w->codebar}}</td>                                 
+                  <td>{{$w->codebar}}</td>
+                   <td>{{$w->orden}}</td>                                 
                   <td style="text-align: center"><img src="{{$w->imagen}}" width="30px" data-toggle="modal" data-target="#myModal{{$nw}}" class="img-thumbnail">
                         <!-- Modal -->
                         <div class="modal fade" id="myModal{{$nw}}" role="dialog">

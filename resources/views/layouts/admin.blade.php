@@ -49,7 +49,7 @@
         <!-- Logo -->
         <a href="/dashboard" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><img src="/img/cor.png" style="width: 25px; height: 30px"></img></span>
+          <span class="logo-mini"><img src="/img/cor.png" style="margin-top:-5px ;width: 25px; height: 30px"></img></span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>TIenDA</b></span>
         </a>
@@ -131,8 +131,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
+                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Carter´s</a></li>
                 <li><a href="/login"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-
               </ul>
             </li>
              

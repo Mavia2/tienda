@@ -54,6 +54,7 @@ class DetalleController extends Controller
            $pedidos=DB::table('pedidos')
            ->select('nombre','idpedidos')
            ->orderBy('idpedidos','desc')
+           ->take(5)
            ->get();
            
 
@@ -68,7 +69,7 @@ class DetalleController extends Controller
           ->join('detalleventa as dv','s.idstock','=','dv.id_stock')
           ->join('venta as v','dv.id_venta','=','v.idventa')
           ->join('persona as p','v.id_persona','=','p.idpersona')
-          ->select('p.usuario')
+          ->select('p.usuario','v.idventa')
           ->where('do.iddetalleorden',$request->get('id'))
           ->get();
 

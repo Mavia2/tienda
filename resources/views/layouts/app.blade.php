@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top ">
             <div class="container">
                 <div class="navbar-header">
 
@@ -37,8 +37,8 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
+                       <span class="logo-mini"><img src="/img/cor.png" style="margin-top:-5px ;width: 25px; height: 30px"> {{ config('app.name', 'Laravel') }}
+                    </span></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -51,7 +51,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            
                           
                         @else
                             <li class="dropdown">

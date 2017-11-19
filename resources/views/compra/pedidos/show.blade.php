@@ -303,6 +303,7 @@
         setInterval(function() {
             $("#actual").load("/compra/actual");
         }, 5000);
+        
        
     });
 

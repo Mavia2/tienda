@@ -40,7 +40,7 @@ class PedidosController extends Controller
            ->orwhere('pe.fechacompra','LIKE','%'.$query.'%')
            ->orderBy('pe.fechacompra','desc')
            ->groupBy('pe.idpedidos','pe.nombre','t.tipo','pe.comentarios','pe.fechacompra','pe.fechadespacho','pe.fechallegada','e.estado','pe.envio','pe.costo_unit_total')
-           ->paginate(7);
+           ->paginate(12);
 
            
             

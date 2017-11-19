@@ -40,7 +40,7 @@
           <td style="text-align: center"><img src="{{$sto->imagen}}" width="30px" data-toggle="modal" data-target="#myModal{{$n}}" class="img-thumbnail">
                         <!-- Modal -->
                         <div class="modal fade" id="myModal{{$n}}" role="dialog">
-                          <div class="modal-dialog modal-sm">
+                          <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -60,7 +60,7 @@
           <td style="text-align: center">{{$sto->precio}}</td>
           <td style="text-align: center">{{$sto->chequeado}}</td>
           <td>
-            <a href="{{URL::action('DetalleordenController@show',$sto->iddetalleorden)}}"><button class="btn btn-primary btn-sm">Detalles</button></a>
+            
             <a href="" data-toggle="modal" data-target="#cModal{{$n}}"><button class="btn btn-info btn-sm">Editar</button></a>             
             <a href="" data-target="#modal-delete-{{$sto->iddetalleorden}}" data-toggle="modal"><button class="btn btn-danger btn-sm">Eliminar</button></a>
           </td>
@@ -101,7 +101,7 @@
         @endforeach
       </table>
     </div>
-   
+    {{$detalle->render()}}
   </div>
 </div>
 

@@ -30,7 +30,7 @@ class DetalleordenController extends Controller
            ->orwhere('pro.codebar','LIKE','%'.$query.'%')
            ->where('o.idorden', 'LIKE','%'.$request->get('type').'%')
            ->orderBy('o.idorden','desc')
-           ->get();
+           ->paginate(200);
 
            $orden=DB::table('orden as or')          
            ->select('or.orden','or.idorden')
@@ -70,7 +70,7 @@ public function store (Request $request)
 }
 public function show($id)
 {
-    return view("compra.tipos.show",["estado"=>Tipos::findOrFail($id)]);
+   
 }
 public function edit($id)
 {   

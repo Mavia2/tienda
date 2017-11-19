@@ -221,7 +221,7 @@
           <th>codebar</th>         
           <th>Imagen</th>
           <th>Producto</th>
-          <th>Categoria</th>
+          <th>Talle</th>
           <th>Tipo</th>
           <th>Cliente</th>
           <th style="text-align: center">Costo</th>
@@ -273,7 +273,7 @@
                         @php $nx++; @endphp
                   </td>                   
             <td>{{$per->producto}}</td>
-            <td>{{$per->categoria}}</td>
+            <td>{{$per->talle}}</td>
             <td>@if ($per->id_pedidos==1)
               Stock
               @else

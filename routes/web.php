@@ -16,7 +16,7 @@ Route::get('/', function () {
     return Redirect::to('dashboard');
 });
 
-
+Route::resource('buscar', 'BuscarController');
 
 Route::get('importExport', 'MaatwebsiteDemoController@importExport');
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

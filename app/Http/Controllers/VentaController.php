@@ -137,8 +137,8 @@ class VentaController extends Controller
              ->join('pedidos as pe','o.id_pedidos','=','pe.idpedidos')
             ->join('producto as p','do.id_producto','=','p.idproducto')
             ->join('venta as v','dv.id_venta','=','v.idventa')           
-            ->select('s.estado', 'p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos',DB::raw('sum(dv.precio_venta) as precios'), DB::raw('count(dv.precio_venta) as cant'),DB::raw('(do.precio/do.cant*1.0712+pe.costo_unit_total+o.extra_unit)*pe.tasa as ctp'))
-            ->groupBy('s.estado','p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos','do.precio','do.cant','pe.costo_unit_total','pe.tasa','o.extra_unit')
+            ->select('o.orden','s.estado', 'p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos',DB::raw('sum(dv.precio_venta) as precios'), DB::raw('count(dv.precio_venta) as cant'),DB::raw('(do.precio/do.cant*1.0712+pe.costo_unit_total+o.extra_unit)*pe.tasa as ctp'))
+            ->groupBy('o.orden','s.estado','p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos','do.precio','do.cant','pe.costo_unit_total','pe.tasa','o.extra_unit')
             ->where('id_venta',$id) 
             ->get();
 
