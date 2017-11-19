@@ -49,7 +49,7 @@
         <!-- Logo -->
         <a href="/dashboard" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><img src="/img/cor.png" style="margin-top:-5px ;width: 25px; height: 30px"></img></span>
+          <span class="logo-mini"><img src="/img/cor4.png" style="margin-top:-2px ;margin-left:-5px ;width: 50px; height: 55px"></img></span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>TIenDA</b></span>
         </a>
