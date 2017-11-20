@@ -16,13 +16,16 @@ class BuscarController extends Controller
    	}
    public function index(Request $request)
    	{
-      $codt=File::files('/xampp/htdocs/tienda/public/images/productos');
-       
-      foreach ($codt as $key ) {
-        $var[]=['cod'=>strstr(substr($key,45),'-',True),'codcar'=>substr(strstr($key,'-'),1,-4),'url'=>substr($key,27)];
-        
+      $carnena=File::files('/xampp/htdocs/tienda/public/images/productos/carters_nenas');       
+      foreach ($carnena as $key ) {
+        $var[]=['cod'=>strstr(substr($key,59),'-',True),'codcar'=>substr(strstr($key,'-'),1,-4),'url'=>substr($key,27)];  
       }
-     
+
+      $carbeba=File::files('/xampp/htdocs/tienda/public/images/productos/carters_bebas');   
+      foreach ($carbeba as $key ) {
+        $var[]=['cod'=>strstr(substr($key,59),'-',True),'codcar'=>substr(strstr($key,'-'),1,-4),'url'=>substr($key,27)];  
+      }
+
       $col = Collection::make($var);
       
       $query=trim($request->get('searchText')); 
