@@ -6,4 +6,4 @@
       <button type="submit" class="btn btn-primary">Buscar</button>
   </div>
 </div>
-{{Form::close()}}
+

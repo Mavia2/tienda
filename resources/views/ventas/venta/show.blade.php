@@ -104,9 +104,12 @@
                   </td>
                   <td>{{$w->producto}}</td>
                  
-                  <td>{{$w->estado}}</td>
+                  <td>@if ($w->estado=="Chequeado")<span class="label label-success">{{$w->estado}}</span>
+                      @else {{$w->estado}}
+                      @endif
+                  </td>
                   <td style="text-align: center">{{$w->talle}}</td> 
-                  <td style="text-align: center">$ {{number_format($w->ctp,0,',','.')}}</td>                                  
+                  <td style="text-align: center">$ {{number_format($w->ctp,0,',','.')}}</td>                               
                   <td style="text-align: center">$ {{number_format($w->precio_venta,0,',','.')}}</td>
                   <td style="text-align: center">$ {{number_format($w->precio_venta-$w->ctp,0,',','.')}}</td>
 
