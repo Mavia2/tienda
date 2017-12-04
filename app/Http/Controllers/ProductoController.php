@@ -29,11 +29,11 @@ class ProductoController extends Controller
             ->where('producto','LIKE','%'.$query.'%')
             ->orwhere('codebar','LIKE','%'.$query.'%')
             ->orderBy('idproducto','desc')
-            ->get();
-
+            ->paginate(100);
+            $total=DB::table('producto')->count();
             $categoria=DB::table('categoria')->get();
             $marca=DB::table('marca')->get();
-            return view('stock.producto.index',["productos"=>$productos,"categoria"=>$categoria,"marca"=>$marca,"searchText"=>$query]);
+            return view('stock.producto.index',["productos"=>$productos,"categoria"=>$categoria,"marca"=>$marca,"searchText"=>$query, "total"=>$total]);
         }
   }
   public function create()
@@ -85,6 +85,16 @@ public function update(Request $request,$id)
     $producto->update();
    return Redirect::back();
       }
+    elseif ($request->get('type')==2){
+      $producto=Producto::findOrFail($id);
+      $producto->codebar=$request->get('codebar');
+      $producto->producto=$request->get('producto');
+      $producto->talle=$request->get('talle');
+      $producto->style=$request->get('style');
+      $producto->imagen=$request->get('imagen');
+      $producto->save();    
+      return Redirect::back();
+    }    
     else{
     $producto=Producto::findOrFail($id);
     $producto->codebar=$request->get('codebar');
@@ -145,5 +155,7 @@ public function update2(Request $request)
    
     return Redirect::back();
 }
+
+
 
 }

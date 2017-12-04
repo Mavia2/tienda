@@ -103,6 +103,7 @@
                 <li><a href="/compra/pedidos"><i class="fa fa-circle-o"></i> Pedidos</a></li>
                 <li><a href="/compra/orden"><i class="fa fa-circle-o"></i> Ordenes</a></li>
                 <li><a href="/compra/detalleorden"><i class="fa fa-circle-o"></i> Listado de Compras</a></li>
+                <li><a href="http://localhost:3000"><i class="fa fa-circle-o"></i> Importar Ordenes</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -127,11 +128,21 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-user-secret"></i> <span>Productos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Carter´s</a></li>
+                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Web</a></li>
+                 <li><a href="http://localhost:3000/archivos/listar_archivos"><i class="fa fa-circle-o"></i> Descargar Web</a></li>        
+              </ul>
+            </li>
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">                
                 <li><a href="/login"><i class="fa fa-circle-o"></i> Usuarios</a></li>
               </ul>
             </li>

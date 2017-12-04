@@ -1,10 +1,10 @@
 @extends ('layouts.admin')
 @section ('titulo') 
- <span class="col-lg-1 col-md-1 col-sm-1 col-xs-12" style="padding-left:0">Productos </span>
- <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12" Style="margin-top:4px;padding-left:30px ">
+ <div class="col-lg-2 col-md-1 col-sm-1 col-xs-12" style="padding-left:0">Productos <span class="badge">{{$total}}</span></div>
+ <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12" Style="margin-top:4px;margin-left:-50px ">
     @include('stock.producto.search')
 </div>
-<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6 " style="padding-right:0; padding-left:0;margin-left:0">   
+<div class="col-lg-7 col-md-8 col-sm-8 col-xs-6 " style="padding-right:0; padding-left:0;margin-left:50px">   
   <button class="btn btn-default pull-right" data-toggle="modal" data-target="#crpModal"  Style="margin-top:4px" href="{{URL::action('ProductoController@create')}}"><i class="fa fa-plus" aria-hidden="true"></i></button>
    </div>
 
@@ -14,7 +14,7 @@
 
 <div class="row">
   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-    Cant: {{$productos->count()}}
+    Cant: {{$total}}
  </div>
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="table-responsive">
@@ -125,11 +125,68 @@
           <td>{{$pro->estacion}}</td>
           <td>{{$pro->marca}}</td>
           <td>
-            <a href="{{URL::action('ProductoController@edit',$pro->idproducto)}}"><button class="btn btn-info">Editar</button></a>
+            <button class="btn btn-info" data-toggle="modal" data-target="#EditModal{{$nx}}">Editar</button>
+           
             <a href="{{URL::action('ProductoController@edit2')}}"><button class="btn btn-info">Edit lote</button></a>
             <a href="" data-target="#modal-delete-{{$pro->idproducto}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
           </td>
         </tr>
+        <!-- Modal edit-->
+                        <div class="modal fade" id="EditModal{{$nx}}" role="dialog">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header" style="background-color:#F3EA5D">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h3 class="modal-title" style="text-align: center">Editar Producto</h3>
+                              </div>
+                              <div class="modal-body">
+                                {!!Form::open(['method'=>'PATCH','action'=>['ProductoController@update', $pro->idproducto],'autocomplete'=>'off'])!!}
+                                <input type="hidden" name="type" value="2" class="form-control">
+                                <div class="row">
+                                  <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="codebar">Codebar: </label>
+                                      <input type="text" name="codebar" required value="{{$pro->codebar}}" class="form-control">          
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="producto" class="control-label">Producto</label>
+                                      <input type="text" name="producto" value="{{$pro->producto}}" class="form-control">
+                                    </div>
+                                  </div>                             
+                                  <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="talle">Talle</label>
+                                      <input type="text" name="talle" value="{{$pro->talle}}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-3 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="style">Style</label>
+                                      <input type="text" name="style" value="{{$pro->style}}" class="form-control">
+                                    </div>
+                                  </div>
+                                  <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="imagen">Imagen</label>
+                                      <input type="text" name="imagen" value="{{$pro->imagen}}" class="form-control">
+                                    </div>
+                                  </div>                          
+                                </div>
+                                 </div>
+                               <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                              </div>
+                                {!!Form::close()!!}
+                              
+                                     
+                            </div>
+                          </div>
+                        </div>
+                        
+
         @include('stock.producto.modal')
         @endforeach
        
@@ -145,6 +202,6 @@
     </div>   
   </div>
 </div>
-
+ {{$productos->render()}}
 
 @endsection

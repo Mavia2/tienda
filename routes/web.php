@@ -25,6 +25,7 @@ Route::post('importEx', 'MaatwebsiteDemoController@importExport');
 Route::get('importEx', 'MaatwebsiteDemoController@importExport');
 
 Route::post('stock/producto/update2', 'ProductoController@update2');
+
 Route::post('stock/producto/edit2', 'ProductoController@edit2');
 Route::get('stock/producto/edit2', 'ProductoController@edit2');
 Route::resource('stock/producto', 'ProductoController');
