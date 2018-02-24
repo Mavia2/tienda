@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Detalleventa;
 use App\Stock;
+use App\Venta;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use DB;
@@ -107,6 +108,7 @@ class DetalleventaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $detaventa=new Detalleventa;
@@ -119,8 +121,18 @@ class DetalleventaController extends Controller
         $sto=Stock::findOrFail($request->get('idstock'));
         $sto->stock=0;
         $sto->update();
+        
+        $venta=Venta::findOrFail($request->get('idventa'));
+        $venta->id_persona=$request->get('idpersona');
+        $fecha=Carbon::createFromFormat('d/m/Y',$request->get('fecha'));
+        $venta->fecha=$fecha->toDateTimeString();
+        $venta->vestado=$request->get('estado');
+        $venta->id_pedidos=$request->get('tventa');
+        $venta->vcomentario=$request->get('vcomentario');
+        $venta->save();
 
-        return Redirect::back();
+        #retur("ventas.venta.edit",["venta"=>$venta]);
+        return Redirect::to("ventas/venta/$venta->idventa/edit");
     }
 
     /**

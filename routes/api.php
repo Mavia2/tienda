@@ -17,6 +17,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 Route::get('pedidos',  'DetalleController@pedidos');
+Route::get('buscar',  'BuscarController@buscar');
 Route::get('venta',  'DetalleController@venta');
 Route::get('imagen',  'DetalleController@imagen');
 Route::resource('detalles','DetalleController');

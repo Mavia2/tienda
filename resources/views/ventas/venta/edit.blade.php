@@ -36,7 +36,7 @@
 <div class="col-lg-2 col-md-5 col-xs-12">
     <div class="form-group">
        <label>Fecha Venta</label>       
-       <input  name="fecha" class="form-control" value="@php $f=new Carbon\Carbon();$fv=$f->createFromFormat('Y-m-d',$venta->fecha); @endphp{{$fv->format('d/m/Y')}}">
+       <input  id="fecha" name="fecha" class="form-control" value="@php $f=new Carbon\Carbon();$fv=$f->createFromFormat('Y-m-d',$venta->fecha); @endphp{{$fv->format('d/m/Y')}}">
     </div>
 </div> 
 
@@ -59,7 +59,7 @@
 <div class="col-lg-2 col-md-5 col-xs-12">
     <div class="form-group">      
       <label>Estado Venta</label>
-      <select type="text" name="estado"class="form-control" value="{{$venta->vestado}}">
+      <select type="text" id="estado" name="estado"class="form-control" value="{{$venta->vestado}}">
         @if($venta->vestado=="Confirmada")
         <option value="Confirmada" selected>1 - Confirmada</option>
         <option value="Contactada">2 - Contactada </option>
@@ -79,7 +79,7 @@
     <div class="col-lg-2 col-md-5 col-xs-12">
     <div class="form-group">
        <label>Comentarios</label>       
-       <input  name="vcomentario" class="form-control" value="{{$venta->vcomentario}}">
+       <input  name="vcomentario" id="vcomentario" class="form-control" value="{{$venta->vcomentario}}">
     </div>
     </div> 
 
@@ -159,6 +159,12 @@
     
 <div class="row">
        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        {!! Form::model(Request::all(), ['action'=>['DetalleventaController@store', $id],'method'=>'STORE','class'=>'form-inline'])!!}
+                  <div id="idpersona3"><input type="hidden" id="idpersona" class="form-control" name="idpersona" value="1"></div>
+                  <div id="fecha3"><input type="hidden" id="fecha" class="form-control" name="fecha" ></div>
+                  <div id="estado3"><input type="hidden" id="estado" class="form-control" name="estado" ></div>
+                  <div id="tventa3"><input type="hidden" id="tventa" class="form-control" name="tventa" ></div>
+                  <div id="vcomentario3"><input type="hidden" id="vcomentario" class="form-control" name="vcomentario" ></div>
       <table class="table table-striped table-bordered table-condensed table-hover">
               <thead style="background-color:#F9D0F5">
                 
@@ -178,9 +184,10 @@
                 @foreach($articulos as $w)
                 
                 <tr>
-                   {!! Form::model(Request::all(), ['action'=>['DetalleventaController@store', $id],'method'=>'STORE','class'=>'form-inline'])!!}
+                   
                    <td><input type="hidden" value="{{$w->idstock}}" name="idstock">{{$w->idstock}}</td>
                    <td><input type="hidden" value="{{$id}}" name="idventa">{{$w->codebar}}</td>
+
                   <td style="text-align: center"><img src="{{$w->imagen}}" width="30px" data-toggle="modal" data-target="#myModall{{$nn}}" class="img-thumbnail">
                         <!-- Modal -->
                         <div class="modal fade" id="myModall{{$nn}}" role="dialog">
@@ -206,13 +213,14 @@
                   <td style="text-align: center"> 
                     
                     <button type="submit" class="btn btn-success btn-sm">Agregar</button>
-                    {!!Form::close()!!}
+                   
                   </td>
                    
                 </tr>
                 @endforeach
               </tbody>
             </table>
+             {!!Form::close()!!}
           </div>
          </div> 
 
@@ -231,7 +239,11 @@
      <div class="col-lg-3 col-md-4 col-xs-12">
 
        {!! Form::model(Request::only('type','searchText','talle','prod','ped','venta'), ['route'=>['venta.edit', $id],'method'=>'GET', 'autocomplete'=>'off','role'=>'search'])!!}
-    
+      <div id="idpersona2" ><input type="hidden" id="idpersona" class="form-control" name="idpersona" value="1"></div>
+      <div id="fecha2" ><input type="hidden" id="fecha" class="form-control" name="fecha" ></div>
+      <div id="estado2" ><input type="hidden" id="estado" class="form-control" name="estado" ></div>
+      <div id="tventa2" ><input type="hidden" id="tventa" class="form-control" name="tventa" ></div>
+      <div id="vcomentario2" ><input type="hidden" id="vcomentario" class="form-control" name="vcomentario" ></div>
       <div class="form-group">
         <label>Codigo de barra o Style</label> 
         <div class="input-group">
@@ -323,17 +335,41 @@
                 @endforeach
                  {!!Form::close()!!}
               </tbody>
-            </table>
-            
+            </table>            
           </div>
     </div>
    </div><!-- /.box-body -->
 </div><!-- /.box -->
 
+@push('script')
+  <script>
+  $(document).ready(function(){
+     setInterval(function() {
+     idp =$('#idpersona').val();
+     fech =$('#fecha').val();
+     est =$('#estado').val();
+     tven =$('#tventa').val();
+     vc =$('#vcomentario').val();
+     $('#idpersona2').html("<input type='hidden' id='idpersona' class='form-control' name='idpersona' value='"+idp+"'>");
+     $('#fecha2').html("<input type='hidden' id='fecha' class='form-control' name='fecha' value='"+fech+"'>");
+     $('#estado2').html("<input type='hidden' id='estado' class='form-control' name='estado' value='"+est+"'>");
+     $('#tventa2').html("<input type='hidden' id='tventa' class='form-control' name='tventa' value='"+tven+"'>");
+     $('#vcomentario2').html("<input type='hidden' id='vcomentario' class='form-control' name='vcomentario' value='"+vc+"'>");
+
+     $('#idpersona3').html("<input type='hidden' id='idpersona' name='idpersona' value='"+idp+"'>");
+     $('#fecha3').html("<input type='hidden' id='fecha' name='fecha' value='"+fech+"'>")
+     $('#estado3').html("<input type='hidden' id='estado' name='estado' value='"+est+"'>")
+     $('#tventa3').html("<input type='hidden' id='tventa' name='tventa' value='"+tven+"'>")
+     $('#vcomentario3').html("<input type='hidden' id='vcomentario' name='vcomentario' value='"+vc+"'>")
+      }, 1000);
+     
     
 
+  }); 
+</script>
+@endpush
    
-  <!-- @push('script')
+  <!--@push('script')
   <script>
   $(document).ready(function(){
     $('#bt_add').click(function(){

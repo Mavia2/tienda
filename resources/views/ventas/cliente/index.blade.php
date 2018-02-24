@@ -184,7 +184,7 @@
         @endforeach
       </table>
     </div>
-    {{$personas->render()}}
+    {{$personas->appends(Request::only(['searchText']))->render()}}
   </div>
 </div>
 

@@ -60,6 +60,8 @@ Route::get('dashboard/calc', 'DashController@calc');
 Route::resource('dashboard','DashController');
 #Route::get('compra/actual2', 'ActualController@show');
 
+#Route::get('ventas/detalleventa', 'DetalleventaController@storess');
+
 Route::get('cal', 'gCalendarController@index2');
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb)
 {

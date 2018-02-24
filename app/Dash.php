@@ -35,7 +35,7 @@ class Dash extends Model
 	}
 
 	public static function ventapedido($año){
-		$año='2017';
+		#$año='2017';
         $m=1;
         $mes=[];
         while ( $m<= 12) {
@@ -78,7 +78,7 @@ class Dash extends Model
            
     }
     public static function ventastock($año){
-		$año='2017';
+		
         $m=1;
         $mes=[];
         while ( $m<= 12) {

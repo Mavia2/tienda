@@ -98,6 +98,23 @@ class DashController extends Controller
      $data[7]=$data[7]+14;
      $data[8]=$data[8]+4;
      $data[9]=$data[9]+16;
+     $data[10]=$data[10]+4;
+     $data[11]=$data[11]+6;
+
+     $data1=Dash::ventastock('2018');
+     $data1[0]=$data1[0]+0;
+     $data1[1]=$data1[1]+1;
+     $data1[2]=$data1[2]+0;
+     $data1[3]=$data1[3]+0;
+     $data1[4]=$data1[4]+0;
+     $data1[5]=$data1[5]+0;
+     $data1[6]=$data1[6]+0;
+     $data1[7]=$data1[7]+0;
+     $data1[8]=$data1[8]+0;
+     $data1[9]=$data1[9]+0;
+     $data1[10]=$data1[10]+0;
+     $data1[11]=$data1[11]+0;
+
      $chartjs1 = app()->chartjs
         ->name('lineChartTest')
         ->type('line')
@@ -105,19 +122,19 @@ class DashController extends Controller
         ->labels(['Ene', 'Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'])
         ->datasets([            
             [
-                "label" => "2017",
+                "label" => "2018",
                 'backgroundColor' => "rgba(38, 185, 154, 0.31)",
                 'borderColor' => "rgba(38, 185, 154, 0.7)",
                 "pointBorderColor" => "rgba(38, 185, 154, 0.7)",
                 "pointBackgroundColor" => "rgba(38, 185, 154, 0.7)",
                 "pointHoverBackgroundColor" => "#fff",
                 "pointHoverBorderColor" => "rgba(220,220,220,1)",
-                'data' => $data,
+                'data' => $data1,
             ],
             [
-                "label" => "2016",
+                "label" => "2017",
                 
-                'data' => [11, 10,6, 8,3,16,23,13,21,20,18,26],
+                'data' => $data,
             ]
         ])
         ->options([
@@ -137,15 +154,15 @@ class DashController extends Controller
          ->labels(['Ene', 'Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'])
          ->datasets([             
              [
-                 "label" => "2017",
+                 "label" => "2018",
                  'backgroundColor' => ['rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)'],               
                  
-                 'data' => Dash::ventapedido('2017')
+                 'data' => Dash::ventapedido('2018')
              ],
              [
-                 "label" => "2016",
+                 "label" => "2017",
                  'backgroundColor' => ['rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)','rgba(255, 206, 86, 0.2)'],
-                 'data' => [93, 75,91,69,0,0,121,0,0,0,78,56,0],
+                 'data' => Dash::ventapedido('2017'),
                  'borderColor'=> ['rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)','rgba(255, 206, 86, 1)'],
                  'borderWidth'=> 1
 

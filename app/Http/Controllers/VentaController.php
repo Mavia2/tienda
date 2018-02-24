@@ -45,12 +45,23 @@ class VentaController extends Controller
             ->where('id_pedidos','LIKE','%'.$request->get('tipo').'%')
             ->where('vestado','LIKE','%'.$request->get('estado').'%')                                
             ->orderBy('v.idventa','desc')
-            ->get();
+            ->paginate(100);
+            
+            if (!$query && !$request->get('estado')){
+                $tipo=[""=>"Sin filtro..."];
+                $ped=DB::table('pedidos')
+                ->select('idpedidos','nombre')
+                ->orderBy('idpedidos','desc')
+                ->get();
+                foreach ($ped as $key => $value) {            
+        $tipo [$value->idpedidos]=$value->nombre;
 
+            }}
+            else{
             $tipo=[""=>"Sin filtro..."];
         foreach ($ventas as $key => $value) {            
         $tipo [$value->id_pedidos]=$value->nombre;
-         }
+         }}
            $estado=[""=>"Sin filtro..."];
         foreach ($ventas as $key => $value) {            
         $estado [$value->vestado]=$value->vestado;
@@ -162,6 +173,20 @@ class VentaController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        
+        if(!is_null($request->get('idpersona'))){
+        $venta=Venta::findOrFail($id);
+        $venta->id_persona=$request->get('idpersona');
+
+        $fecha=Carbon::createFromFormat('d/m/Y',$request->get('fecha'));
+        $venta->fecha=$fecha->toDateTimeString();
+        $venta->vestado=$request->get('estado');
+        $venta->id_pedidos=$request->get('tventa');
+        $venta->vcomentario=$request->get('vcomentario');
+        
+        $venta->save();}
+        
+
         $venta=DB::table('venta as v')
          ->join('persona as p','v.id_persona','=','p.idpersona')
          ->where('idventa', $id)

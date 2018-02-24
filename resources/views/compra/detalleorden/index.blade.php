@@ -101,7 +101,7 @@
         @endforeach
       </table>
     </div>
-    {{$detalle->render()}}
+    {!!$detalle->appends(Request::only(['type','searchText']))->render()!!}
   </div>
 </div>
 

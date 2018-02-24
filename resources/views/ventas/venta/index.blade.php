@@ -4,7 +4,7 @@
  <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12" Style="margin-top:4px;padding-left:0 ">
     @include('ventas.venta.search')
 </div>
- {!! Form::model(Request::only('tipo','estado'), ['route'=>['venta.index'],'method'=>'GET', 'autocomplete'=>'off','role'=>'search'])!!}
+ 
   
   
   <div class="col-lg-7 col-md-2 col-xs-12 " style="padding-right:0; margin-left:40px"> 
@@ -61,6 +61,8 @@
                <td style="text-align: center"><span data-toggle="modal" data-target="#eModal{{$nx}}" class="label label-success">{{$per->vestado}}</span></td>     
           @elseif ($per->vestado=="Contactada") 
           <td style="text-align: center"><span data-toggle="modal" data-target="#eModal{{$nx}}" class="label label-default">{{$per->vestado}}</span></td>
+          @elseif ($per->vestado=="No Retiro") 
+          <td style="text-align: center"><span data-toggle="modal" data-target="#eModal{{$nx}}" class="label label-danger">{{$per->vestado}}</span></td>
            @else
           <td style="text-align: center"><span data-toggle="modal" data-target="#eModal{{$nx}}" class="label label-warning">{{$per->vestado}}</span></td>
           @endif         
@@ -105,14 +107,23 @@
                                         <option value="Confirmada" selected>1 - Confirmada</option>
                                         <option value="Contactada">2 - Contactada </option>
                                         <option value="Entregada">3 - Entregada </option>
+                                        <option value="No Retiro">4 - No Retiro </option>
                                         @elseif($per->vestado=="Contactada")
                                         <option value="Confirmada">1 - Confirmada</option>
                                         <option value="Contactada" selected>2 - Contactada </option>
                                         <option value="Entregada">3 - Entregada </option>
-                                        @else
+                                        <option value="No Retiro">4 - No Retiro </option>
+                                        @elseif($per->vestado=="Entregada")
                                         <option value="Confirmada">1 - Confirmada</option>
                                         <option value="Contactada">2 - Contactada </option>
                                         <option value="Entregada" selected>3 - Entregada </option> 
+                                        <option value="No Retiro">4 - No Retiro </option>
+                                        @else
+                                        <option value="Confirmada">1 - Confirmada</option>
+                                        <option value="Contactada">2 - Contactada </option>
+                                         <option value="Entregada">3 - Entregada </option>
+                                        <option value="No Retiro" selected>4 - No Retiro </option>
+
                                         @endif   
                                       </select>     
                                   </div>
@@ -187,7 +198,9 @@
           <th></th>                   
         </tfoot>
       </table>      
-    </div>   
+    </div>
+    {{$ventas->appends(Request::only('tipo','estado','searchText'))->render()}} 
+     
   </div>
 </div>
 
