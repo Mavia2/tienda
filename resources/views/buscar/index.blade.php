@@ -255,9 +255,21 @@ function ant(elemento) {
   window.location.href = $url;   
 }
 
+ function sig2(elemento) {
+  var $tempp =$(elemento).val();
+  $tempp = parseInt($tempp)+1;
+  var $url = 'http://tienda.ar/buscar?searchText=&searchText2='+ $tempp;  
+  var $link =$(elemento).attr('action');
+  window.location.href = $url;   
+}
 
-
-
+function ant2(elemento) {
+  var $tempp =$(elemento).val();
+  $tempp = parseInt($tempp)-1;
+  var $url = 'http://tienda.ar/buscar?searchText=&searchText2='+ $tempp;  
+  var $link =$(elemento).attr('action');
+  window.location.href = $url;   
+}
 
 
     
