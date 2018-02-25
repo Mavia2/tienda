@@ -243,11 +243,16 @@ function copyToClipboard2(elemento) {
  function sig(elemento) {
   var $tempp =$(elemento).val();
   $tempp = parseInt($tempp)+1;
+  var $url = 'http://tienda.ar/buscar?searchText='+ $tempp;  
   var $link =$(elemento).attr('action');
-
-  
-  console.log($tempp);  
-  console.log($link);  
+  window.location.href = $url;   
+}
+function ant(elemento) {
+  var $tempp =$(elemento).val();
+  $tempp = parseInt($tempp)-1;
+  var $url = 'http://tienda.ar/buscar?searchText='+ $tempp;  
+  var $link =$(elemento).attr('action');
+  window.location.href = $url;   
 }
 
 
