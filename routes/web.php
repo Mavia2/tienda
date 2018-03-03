@@ -17,6 +17,10 @@ Route::get('/', function () {
 });
 
 Route::resource('buscar', 'BuscarController');
+Route::get('sync/elimi', 'SyncController@elimi');
+Route::resource('sync', 'SyncController');
+
+
 
 Route::get('importExport', 'MaatwebsiteDemoController@importExport');
 Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

@@ -133,7 +133,8 @@
               </a>
               <ul class="treeview-menu">
                  <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Web</a></li>
-                 <li><a href="http://localhost:3000/archivos/listar_archivos"><i class="fa fa-circle-o"></i> Descargar Web</a></li>        
+                 <li><a href="http://localhost:3000/archivos/listar_archivos"><i class="fa fa-circle-o"></i> Descargar Web</a></li>
+                 <li><a href="/sync"><i class="fa fa-circle-o"></i> Sincronizar - Eliminar</a></li>        
               </ul>
             </li>
 
