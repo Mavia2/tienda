@@ -14,14 +14,33 @@ use Storage;
 
 class Buscar extends Model
 {
+  protected $table= 'facebook';
+
+  protected $primaryKey= 'id';
+
+  public $timestramp= true;
+
+
+  protected $fillable = [
+      'code',
+      'idfacebook',
+      'album',
+      'foto',
+      'link',      
+      'style',
+      'name',
+      'idalbum',     
+      'updated_at',
+  ];
      
   public static function dataface($album, $busca){
     $apialbum="https://graph.facebook.com/v2.11/$album?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=photos{name,picture,link}";
-    $tools = json_decode(file_get_contents($apialbum));    
-    $data = $tools->photos->data;     
+    $tools = json_decode(file_get_contents($apialbum));   
+    $data = $tools->photos->data;       
     $next = $tools->photos->paging->next;
     $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$next))); 
-    $data=array_merge($data,$tools1->data);  
+    $data=array_merge($data,$tools1->data); 
+
    
     while (isset($tools1->paging->next)) {
        $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$tools1->paging->next))); 
@@ -29,9 +48,11 @@ class Buscar extends Model
     };
      $face=[];
 
+
     foreach ($data as $key => $value) {
+      
       if (substr($value->name,0,5)==$busca){
-         $face[]=['pic'=>$value->picture, 'lin'=>$value->link, 'code'=>substr($value->name,0,5)];
+         $face[]=['name'=>$value->name,'pic'=>$value->picture, 'lin'=>$value->link, 'code'=>substr($value->name,0,5)];
       }
     }    
 

@@ -114,11 +114,13 @@ public function destroy(Request $request ,$id)
     else{
     $sto=stock::findOrFail($stock[0]->idstock);   
     $sto->estado="Chequeado";
+
     $sto->update();
     
     $x=$det->chequeado;
     $xx=$x+1;
     $det->chequeado=$xx;
+    #$det->modificado = true;
     $det->update();
   }
 

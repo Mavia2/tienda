@@ -210,7 +210,7 @@ class VentaController extends Controller
                 ->orwhere('id_tipo',5)
                 ->select('nombre','idpedidos')
                 ->orderBy('idpedidos','desc' )
-                ->take(2)
+                ->take(4)
                 ->get();
             $a=DB::table('pedidos as p')->where('idpedidos',1) ->select('nombre','idpedidos') ->get();
             
@@ -302,9 +302,10 @@ class VentaController extends Controller
             ->join('stock as s','dv.id_stock','=','s.idstock')
             #->join('tipos as t','dv.id_tipo','=','t.idtipo')
             ->join('detalleorden as do','s.id_detalleorden','=','do.iddetalleorden')
+            ->join('orden as o','do.id_orden','=','o.idorden')
             ->join('producto as p','do.id_producto','=','p.idproducto')
             ->join('venta as v','dv.id_venta','=','v.idventa')
-            ->select('p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','s.estado', 'dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos')
+            ->select('p.codebar','p.producto','p.talle','p.imagen','p.style','p.idproducto','s.idstock','s.estado', 'dv.iddetalleventa', 'dv.id_venta', 'dv.precio_venta','v.id_pedidos','o.orden')
             ->where('id_venta',$id) 
             ->get();
         

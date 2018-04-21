@@ -213,7 +213,7 @@ $(document).ready(function() {
                 console.log("complete");
               });
               form[0].reset();                
-      });
+        });
     $('.boton-delete').click(function(e){
           console.log('inicio Eliminar');
           e.preventDefault();

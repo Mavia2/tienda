@@ -15,18 +15,21 @@ Route::post('stock/stock/update2', 'StockController@update2');
 Route::get('/', function () {
     return Redirect::to('dashboard');
 });
-
+Route::get('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
+Route::post('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
+Route::resource('buscar/check', 'BuscarcheckController');
+#Route::resource('buscar/scrap', 'ScrapController');
 Route::resource('buscar', 'BuscarController');
-Route::get('sync/elimi', 'SyncController@elimi');
-Route::resource('sync', 'SyncController');
 
+#Route::get('sync/elimi', 'SyncController@elimi');
+#Route::resource('sync', 'SyncController');
+Route::resource('formavieja', 'FormaviejaController');
 
-
-Route::get('importExport', 'MaatwebsiteDemoController@importExport');
-Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
-Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
-Route::post('importEx', 'MaatwebsiteDemoController@importExport');
-Route::get('importEx', 'MaatwebsiteDemoController@importExport');
+#Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+#Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+#Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
+#Route::post('importEx', 'MaatwebsiteDemoController@importExport');
+#Route::get('importEx', 'MaatwebsiteDemoController@importExport');
 
 Route::post('stock/producto/update2', 'ProductoController@update2');
 

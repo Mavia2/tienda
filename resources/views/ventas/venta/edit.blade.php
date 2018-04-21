@@ -110,7 +110,7 @@
           <th style="text-align: center">Producto</th>
           <th style="text-align: center">Style</th>
           <th style="text-align: center">talle</th>
-          <!--<th style="text-align: center">Tipo Venta</th>-->
+          <th style="text-align: center">Orden</th>
           <th style="text-align: center">Precio</th>
           <th style="text-align: center">Opciones</th>
           
@@ -143,7 +143,7 @@
                   <td>{{$w->producto}}</td>
                   <td>{{$w->style}}</td>
                   <td style="text-align: center">{{$w->talle}}</td>                  
-                  <!--<td style="text-align: center">{{$w->id_pedidos}}</td>-->
+                  <td style="text-align: center">{{$w->orden}}</td>
                   <td style="text-align: center">$ {{number_format($w->precio_venta,0)}}</td>
                   <td>
                      {!!Form::model(Request::all(),['method'=>'DELETE','class'=>'form-inline','route'=>['detalleventa.destroy', $w->iddetalleventa, $w->idstock]])!!}

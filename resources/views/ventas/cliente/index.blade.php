@@ -44,17 +44,23 @@
                                       <input type="text" name="cel" value="{{old('cel')}}" class="form-control" placeholder="Celular ...">
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
                                       <label for="direccion">Direccion Casa</label>
                                       <input type="text" name="direccion" value="{{old('direccion')}}" class="form-control" placeholder="Direccion de la casa...">
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
                                       <label for="direccion">Direccion Trabajo</label>
                                       <input type="text" name="diretrabajo" value="{{old('diretrabajo')}}" class="form-control" placeholder="Direccion del trabajo...">
                                     </div>
+                                  </div>
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="direccion">Localidad</label>
+                                      <input type="text" name="localidad" value="Rosario" class="form-control" placeholder="Localidad...">
+                                    </div>  
                                   </div>
                                   <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
@@ -83,6 +89,7 @@
           <th>Nombre</th>
           <th>Celular</th>
           <th>Direccion</th>
+          <th>Localidad</th>
           <th>Comentarios</th>
           <th>Opciones</th>
         </thead>
@@ -99,6 +106,7 @@
           <span class="label label-info">Trabajo</span> {{$per->diretrabajo}}
           @endif
           </td>
+          <td>{{$per->localidad}}</td>   
           <td>{{$per->comentarios}}</td>          
           <td Style="width:140px">        
            <div class="btn form-inline">
@@ -148,22 +156,28 @@
                                       <input type="text" name="cel" value="{{$per->cel}}" class="form-control" placeholder="Celular ...">
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
                                       <label for="direccion">Direccion Casa</label>
                                       <input type="text" name="direccion" value="{{$per->direccion}}" class="form-control" placeholder="Direccion de la casa...">
                                     </div>
                                   </div>
-                                  <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
                                       <label for="direccion">Direccion Trabajo</label>
                                       <input type="text" name="diretrabajo" value="{{$per->diretrabajo}}" class="form-control" placeholder="Direccion del trabajo...">
                                     </div>
                                   </div>
+                                  <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                                    <div class="form-group">
+                                      <label for="direccion">Localidad</label>
+                                      <input type="text" name="localidad" value="{{$per->localidad}}" class="form-control" placeholder="Localidad...">
+                                    </div>  
+                                  </div>
                                   <div class="col-lg-12 col-sm-6 col-md-6 col-xs-12">
                                     <div class="form-group">
                                       <label for="comentarios">Comentarios</label>
-                                      <textarea  rows="4" name="comentarios" value="{{$per->comentarios}}" class="form-control" placeholder="Comentarios ...">{{$per->comentarios}}</textarea>
+                                      <textarea  rows="4" name="comentarios" value="{{$per->comentarios}}" class="form-control" placeholder="Comentarios...">{{$per->comentarios}}</textarea>
                                     </div>
                                   </div>
                                 </div>

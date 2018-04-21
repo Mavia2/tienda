@@ -212,7 +212,7 @@
   
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="table-responsive">
+    
       <div id="mask"></div>
       <table class="table table-striped table-condensed table-hover" id="example">
         <thead style="background-color:#A9D0F5">
@@ -291,7 +291,7 @@
         @include('ventas.detalleventa.modal')
         @endforeach
       </table>
-    </div>
+    
    
   </div>
 </div>
@@ -300,6 +300,7 @@
 $(document).ready(function() {
   $('#example').DataTable( {
         "paging":   false,
+         "info":   false,
         "searching": false,
         "order": [[ 0, "desc" ]],
         "columnDefs": [ 

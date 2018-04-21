@@ -24,11 +24,22 @@ class DetalleController extends Controller
 
         
          else{
-          $cod1=substr($cod,0,5);
-          $cod2=substr($cod,5);
-          $cod2=substr($cod2,0,-2);
-          $cod2=trim($cod2);          
-          $cod=$cod1."-".$cod2;
+             
+             if (strlen($cod)==10){
+                $cod1=substr($cod,0,5);
+                $cod2=substr($cod,5);
+                
+                         
+                $cod=$cod1."-".$cod2;
+             }
+             else {
+                $cod1=substr($cod,0,5);
+                $cod2=substr($cod,5);
+                $cod2=substr($cod2,0,-2);
+                $cod2=trim($cod2);          
+                $cod=$cod1."-".$cod2;
+             }
+          #dd($cod, $cod1, $cod2);
          }
                  
          $a=$request->get('idpedidos');

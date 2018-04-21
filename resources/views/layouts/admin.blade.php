@@ -128,13 +128,14 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-user-secret"></i> <span>Productos</span>
+                <i class="fa fa-user-secret"></i> <span>Album - Productos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Web</a></li>
-                 <li><a href="http://localhost:3000/archivos/listar_archivos"><i class="fa fa-circle-o"></i> Descargar Web</a></li>
-                 <li><a href="/sync"><i class="fa fa-circle-o"></i> Sincronizar - Eliminar</a></li>        
+                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Album</a></li>
+                  <li><a href="/buscar/check"><i class="fa fa-circle-o"></i> Check Disponibilidad</a></li> 
+                 <li><a href="http://localhost:3000/subirproducto/subir_producto"><i class="fa fa-circle-o"></i> Descargar Web</a></li>
+                       
               </ul>
             </li>
 

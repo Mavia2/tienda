@@ -11,7 +11,7 @@
 @section ('contenido')
 <div class="row">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="table-responsive">
+    
       <table class="table table-striped table-condensed table-hover" id="ex">
         <thead style="background-color:#A9D0F5">
           <th>id</th>          
@@ -61,7 +61,7 @@
                             </div>
                           </div>
                   </div>  
-    </div>
+   
     
   </div>
 </div>

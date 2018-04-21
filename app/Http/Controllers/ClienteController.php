@@ -39,6 +39,7 @@ class ClienteController extends Controller
     	$persona->cel=$request->get('cel');
     	$persona->direccion=$request->get('direccion');
       $persona->diretrabajo=$request->get('diretrabajo');
+      $persona->localidad=$request->get('localidad');
     	$persona->comentarios=$request->get('comentarios');
     	
     	$persona->save();
@@ -65,6 +66,7 @@ class ClienteController extends Controller
       $persona->cel=$request->get('cel');
       $persona->direccion=$request->get('direccion');
       $persona->diretrabajo=$request->get('diretrabajo');
+      $persona->localidad=$request->get('localidad');
       $persona->comentarios=$request->get('comentarios');
       $persona->save();
     	return Redirect::to('ventas/cliente');

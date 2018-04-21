@@ -20,7 +20,7 @@ class ActualController extends Controller
 
      $date = Carbon::now();	
      $date1=$date->subSecond(6);
-     if ($ult->updated_at >$date1->toDateTimeString()) {
+     if ($ult->updated_at > $date1->toDateTimeString()) {
 
      $ultimo=DB::table('pedidos as pe')
            ->join('estado as e','pe.id_estado','=','e.idestado')
@@ -56,7 +56,9 @@ public function show(Request $request, $id)
 
      $date = Carbon::now(); 
      $date1=$date->subSecond(6);
-     if ($ult->updated_at >$date1->toDateTimeString()) {
+     if ($ult->updated_at > $date1->toDateTimeString()) {
+
+     
 
     $query=trim($request->get('searchText'));     
      $pedido=DB::table('pedidos as pe')

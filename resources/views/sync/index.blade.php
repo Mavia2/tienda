@@ -12,7 +12,7 @@
                     <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
                       <div class="table-responsive">                      
                         <table class="table table-striped table-condensed table-hover" id="example">
-                          <thead style="background-color:#A9D0F5">
+                          <thead style="background-color:#A9D0F5">                           
                             <th style="text-align: center">Codigo </th> 
                              <th style="text-align: center">Style </th> 
                             <th style="text-align: center">Imagen</th>
@@ -21,7 +21,8 @@
                           </thead> 
                            @php $n=0;@endphp
                            @foreach ($borr as $bor)   
-                          <tr style="text-align: center">          
+                          <tr style="text-align: center">  
+                                  
                             <td>{{$bor['cod']}}</td>
                             <td>{{$bor['codcar']}}</td>
                             <td style="text-align: center"><img src="{{$bor['url']}}" width="40px" data-toggle="modal" data-target="#myModal{{$n}}" class="img-thumbnail">
