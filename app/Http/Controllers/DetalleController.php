@@ -17,21 +17,28 @@ class DetalleController extends Controller
     public function index(Request $request)
     {
          $cod=trim($request->get('codebar'));
-        
-         if(is_numeric(substr($cod, -1))){
+          
+         if(is_numeric(substr($cod, -1)) &&  (strlen($cod)>10)) {
           $cod=substr($cod,1);
          }
 
         
          else{
              
-             if (strlen($cod)==10){
+             if (strlen($cod)==10 || (substr($cod, -1)=="Y") || (substr($cod, -1)=="M")){
                 $cod1=substr($cod,0,5);
                 $cod2=substr($cod,5);
                 
                          
                 $cod=$cod1."-".$cod2;
              }
+             elseif (strlen($cod)<10) {
+                $cod1=substr($cod,0,5);
+                $cod2=substr($cod,5);
+                
+                         
+                $cod=$cod1."-".$cod2;
+                          }             
              else {
                 $cod1=substr($cod,0,5);
                 $cod2=substr($cod,5);
@@ -41,7 +48,7 @@ class DetalleController extends Controller
              }
           #dd($cod, $cod1, $cod2);
          }
-                 
+            
          $a=$request->get('idpedidos');
          $detalle=DB::table('detalleorden as de')
            ->leftjoin('orden as o','de.id_orden','=','o.idorden')
