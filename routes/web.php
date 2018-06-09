@@ -15,6 +15,8 @@ Route::post('stock/stock/update2', 'StockController@update2');
 Route::get('/', function () {
     return Redirect::to('dashboard');
 });
+Route::get('buscar/check/ajax/destroy', 'BuscarcheckController@destroyAjax');
+Route::post('buscar/check/ajax/destroy', 'BuscarcheckController@destroyAjax');
 Route::get('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
 Route::post('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
 Route::resource('buscar/check', 'BuscarcheckController');

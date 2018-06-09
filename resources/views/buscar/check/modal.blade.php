@@ -10,10 +10,11 @@
         <div class="modal-body">
              <input type="hidden" class="form-control" name="id" value="{{$bor->id}}">
              <input type=hidden name="idfacebook" value="{{$bor->idfacebook}}">
+             <div id="e{{$n}}"></div>             
            <img src="{{$bor->foto}}" width="260px" style="margin: auto">
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger" id="btn-delete">Eliminar</button>
+          <button type="button" class="btn btn-danger" id="btn-delete" onclick="elim('{{$bor->id}}')">Eliminar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>
       </div>

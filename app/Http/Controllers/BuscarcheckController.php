@@ -197,15 +197,35 @@ class BuscarcheckController extends Controller
 	}
 	public function destroy(Request $request, $id)
 	{
-    	 $todo=Formavieja::findOrFail($id);
+    	 $todo=Formavieja::findOrFail($id);       
        $idfacebook=$request->get('idfacebook');
        $url="https://graph.facebook.com/v2.12/$idfacebook?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&method=delete";  
        $todo->delete();
+       $codeSig=$request->get('codeSig');
+
        $resp = json_decode(file_get_contents($url));   
         #dd($idfacebook, $resp);
        return Redirect::back(); 
       #dd($todo, $request->get('idfacebook'));
 	}
+
+  public function destroyAjax(Request $request)
+  {
+       $todo=Formavieja::findOrFail($request->get('tempp'));       
+       $idfacebook=$request->get('idface');
+       $codeSig=$request->get('code1');
+       $radio=$request->get('radio');
+       if($radio==NULL){
+        $radio="cbeba";
+       }
+      
+       #$url="https://graph.facebook.com/v2.12/$idfacebook?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&method=delete";  
+       #$todo->delete();
+       #$resp = json_decode(file_get_contents($url));   
+       
+       return ["id"=>$request->get('tempp'), "idfacebook"=>$idfacebook, "codeSig"=>$codeSig, "radio"=>$radio]; 
+     
+  }
   public function busquedaAjax(Request $request){
 
       $idalbum=mb_substr($request->get('code'),0,1); 

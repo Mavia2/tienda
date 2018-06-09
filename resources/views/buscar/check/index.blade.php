@@ -10,11 +10,11 @@
                        <div class="col-lg-7 col-md-3 col-sm-3 col-xs-12">
                         @include('buscar.check.searchAjax')
                        </div>
-                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="margin-left: 8px; ">
+                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12" style="padding-right: 0px">
                        <!-- <button  type="button" class="btn btn-primary" onclick="copyToClipboard('#p1')">Copiar</button> !-->
-                       <div id="abrirFaceboock"><a target="_blank" href="{{$col2->link}}"><button  type="button" class="btn btn-primary">Abrir Facebook</button></a></div></div>
+                       <div id="abrirFaceboock"><a target="_blank" href="{{$col2->link}}"><button  type="button" class="btn btn-primary pull-right">Abrir Facebook</button></a></div></div>
                        
-                       <div id="abrirWeb">
+                       <div id="abrirWeb" class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                         @if ($radio=='hnena' || $radio=='hnene')<a target="_blank" href="http://www.hm.com/us/product/{{substr($col2->style,0,-2)}}?article={{substr($col2->style,0,-1)}}{{substr($col2->style,-1)}}">
                         @elseif (($radio=='auto' || !$radio))
                              @if (mb_substr($searchText,0,1)=="1" || mb_substr($searchText,0,1)=="2" || mb_substr($searchText,0,1)=="3" || mb_substr($searchText,0,1)=="4" || mb_substr($searchText,0,1)=="7") 
@@ -25,7 +25,7 @@
                         @else <a target="_blank" href="http://www.carters.com/on/demandware.store/Sites-Carters-Site/default/Search-Show?q={{$col2->style}}">
                         @endif
                        
-                        <button type="button" class="btn btn-primary">Abrir Web</button></a> </div>
+                        <button type="button" class="btn btn-default pull-right">Abrir Web</button></a> </div>
                        
                     </div>  
                     <div class="row">
@@ -56,9 +56,9 @@
     </div>            
     <div class="row">
       <div class="col-sm-12 col-md-12">
-        <div class="thumbnail" style="height: 220px">
+        <div class="thumbnail" style="height: 220px ;margin-bottom:0px">
         <div class="col-sm-4 col-md-4">
-          <img src="/images/logos/carters.jpg" style="margin-top:5%; width:75%">
+          <img src="/images/logos/carters.jpg" style="margin-top:5%; width:70%">
           <div class="caption" style="margin-top:5px">           
             <div>
              @if($radio=='cbeba')<input type="radio" name="radio" id="radio1" value="cbeba" checked><label><strong>&nbsp &nbsp Bebas</strong></label>
@@ -118,28 +118,32 @@
 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
   <div class="row">
     <div class="tab-content">               
-              <div class="panel panel-default">
+              <div class="panel panel-default" style="margin-bottom: 0px">
                 <div class="panel-body">                
                   <div class="row">
-                    <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">                      
+                    <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">              
                       <div>                      
-                        <table class="table table-striped table-condensed table-hover" id="example">
-                          <thead style="background-color:#A9D0F5"> 
-                            <th style="text-align: center">nº </th>                           
-                            <th style="text-align: center">Album </th>                           
-                            <th style="text-align: center">Codigo</th> 
-                            <th style="text-align: center">Style</th>
-                            <th style="text-align: center">Imagen</th>
-                            <th style="text-align: center">Accion</th>                                             
+                        <table class="table table-striped table-condensed table-hover table-responsive" id="example" >
+                          <thead style="background-color:#A9D0F5; width:100%; display: table;"> 
+                            <th style="text-align: center; width: 35px">nº </th>                           
+                            <th style="text-align: center; width: 58px">Album </th>                           
+                            <th style="text-align: center; width: 78px">Codigo</th> 
+                            <th style="text-align: center; width: 85px">Style</th>
+                            <th style="text-align: center; width: 70px">Imagen</th>
+                            <th style="text-align: center; width: 186px">Accion</th>                                             
                           </thead> 
+                          <tbody style="display: block; overflow-y: auto; height: 590px">
                            @php $n=1;@endphp
                            @foreach ($lista as $bor)   
-                          <tr style="text-align: center" id="f{{$bor->id}}"> 
-                            <input type="hidden" id="{{$bor->id}}" class="form-control"  value="{{$bor->code}}">                                                  
-                            <td>{{$n}} </td>               
-                            <td id="rad{{$n}}">{{$radio}}</td>                           
-                            <td>{{$bor->code}}</td>                                                     
-                            <td>{{$bor->style}}</td>                                                  
+                          <tr style="text-align: center; width:100%; display: table; " id="f{{$bor->id}}"> 
+                            <input type="hidden" id="d{{$bor->id}}" class="form-control"  value="{{$n}}">
+                            <input type="hidden" id="{{$bor->id}}" class="form-control"  value="{{$bor->code}}">   
+                            <input type="hidden" id="c{{$n}}" class="form-control"  value="{{$bor->code}}">
+                            <input type="hidden" id="f{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">                                                
+                            <td style="min-width: 25px;">{{$n}} </td>               
+                            <td id="rad{{$n}}" style="min-width: 45px;">{{$radio}}</td>                           
+                            <td style="min-width: 62px;">{{$bor->code}}</td>                                                     
+                            <td style="min-width: 65px;">{{$bor->style}}</td>                                                  
                             <td style="text-align: center"><img src="{{$bor->pic}}" width="40px" data-toggle="modal" data-target="#myModal{{$n}}" class="img-thumbnail">
                                   <!-- Modal -->
                                   <div class="modal fade" id="myModal{{$n}}" role="dialog">
@@ -155,16 +159,17 @@
                                       </div>
                                     </div>
                                   </div>
-                        @php $n++; @endphp</td>                             
-                            <td><button class="btn btn-primary btn-sm" onclick="buscarAjax('#{{$bor->id}}')"> Buscar</button>
-                              <a href="" data-target="#modal-delete-{{$bor->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm">Eliminar</button></a>
+                            </td>                             
+                            <td><button class="btn btn-default btn-sm" onclick="buscarAjax('#{{$bor->id}}')"> Buscar</button>
+                              <a href="" data-target="#modal-delete-{{$bor->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm" >Eliminar</button></a>
                             </td>
                            
-                            
+                             @include('buscar.check.modal')
                            </tr>
-                           @include('buscar.check.modal')
+                          
+                           @php $n++; @endphp
                           @endforeach
-
+                          </tbody>
                         </table>                       
                       </div>                      
                     </div>
@@ -177,6 +182,9 @@
 </div>
 @push ('script')
 <script>
+$(document).ready(function() {
+  buscarAjaxIni('#searchText');
+});
   
 function copyToClipboard(elemento) {
   var $temp = $("<input>")
@@ -203,8 +211,8 @@ function copyToClipboard(elemento) {
                 $("#p5").text(data["name"]);
                 $("#p2").html("<textarea class='form-control text-center' readonly cols ='12' rows='14'>"+data["disp"]+"</textarea>");
                 $("#p3").html("<img src='"+data["img"]+"' width='195px'>");
-                $("#abrirFaceboock").html("<a target='_blank' href='"+data["link"]+"'><button  type='button' class='btn btn-primary'>Abrir Facebook</button></a></div>");
-                $("#abrirWeb").html("<a target='_blank' href='"+data["href"]+"'><button type='button' class='btn btn-primary'>Abrir Web</button></a>");               
+                $("#abrirFaceboock").html("<a target='_blank' href='"+data["link"]+"'><button  type='button' class='btn btn-primary pull-right'>Abrir Facebook</button></a></div>");
+                $("#abrirWeb").html("<a target='_blank' href='"+data["href"]+"'><button type='button' class='btn btn-default pull-right'>Abrir Web</button></a>");               
               })
               .fail(function(data) {
               })                
@@ -214,22 +222,27 @@ function copyToClipboard(elemento) {
  } 
 
  function sig(elemento) {  
-  var $tempp =$(elemento).val();
-  $tempp = parseInt($tempp);
-  $tempp1 = $tempp+1;
-  console.log($tempp1);
-  var $radio =$("input[name='radio']:checked").val();
-  console.log($radio);
-  var code=$('#'+$tempp1).val();  
-  AjaxBusca(code, $tempp, $radio);
+  var $tempp =$(elemento).val();  
+  var $num=$('#d'+$tempp).val();
+  $num=parseInt($num);
+  $num1=$num+1;
+  var code1=$('#c'+$num1).val(); 
+  $tempp = parseInt($tempp);  
+  var $radio =$("input[name='radio']:checked").val();     
+  console.log("Actual Numero:",$num, ", proximo numero:",$num1,", Proximo codigo:",code1, ", id:",$tempp, ", album:",$radio);
+  AjaxBusca(code1, $tempp, $radio);
   
 }
 function ant(elemento) {  
-  var $tempp =$(elemento).val();
-  $tempp1 = parseInt($tempp)-1;
-  var $radio =$("input[name='radio']:checked").val();
-  var code =$('#'+$tempp1).val();
-  AjaxBusca(code, $tempp, $radio);
+  var $tempp =$(elemento).val();  
+  var $num=$('#d'+$tempp).val();
+  $num=parseInt($num);
+  $num1=$num-1;
+  var code1=$('#c'+$num1).val(); 
+  $tempp = parseInt($tempp);  
+  var $radio =$("input[name='radio']:checked").val();   
+  console.log("Actual Numero:",$num, ", proximo numero:",$num1,", Proximo codigo:",code1, ", id:",$tempp, ", album:",$radio);
+  AjaxBusca(code1, $tempp, $radio);
 }
 function buscarAjax(code){
   var code =$(code).val();
@@ -252,8 +265,9 @@ function buscarAjax(code){
                 $("#p5").text(data["name"]);
                 $("#p2").html("<textarea class='form-control text-center' readonly cols ='12' rows='14'>"+data["disp"]+"</textarea>");
                 $("#p3").html("<img src='"+data["img"]+"' width='195px'>");
-                $("#abrirFaceboock").html("<a target='_blank' href='"+data["link"]+"'><button  type='button' class='btn btn-primary'>Abrir Facebook</button></a></div>");
-                $("#abrirWeb").html("<a target='_blank' href='"+data["href"]+"'><button type='button' class='btn btn-primary'>Abrir Web</button></a>");               
+                $("#abrirFaceboock").html("<a target='_blank' href='"+data["link"]+"'><button  type='button' class='btn btn-primary pull-right'>Abrir Facebook</button></a></div>");
+                $("#abrirWeb").html("<a target='_blank' href='"+data["href"]+"'><button type='button' class='btn btn-default pull-right'>Abrir Web</button></a>");
+                console.log(idd,data["id"]);               
               })
               .fail(function(data) {
               })                
@@ -262,6 +276,44 @@ function buscarAjax(code){
               });  
 }
 
+function buscarAjaxIni(code){
+  var code =$(code).val();
+  var idd =$('#idd').val();
+  var radio =$("input[name='radio']:checked").val();
+  $("#f"+idd).css({'background-color':'#A9D0F5'});
+  var elem = document.getElementById("f"+idd);  
+  elem.scrollIntoView(true); 
+  console.log(code);     
+}
+
+
+function elim(elemento) {
+  console.log(elemento); 
+  var tempp =elemento;  
+  var $num=$('#d'+tempp).val();
+  $num=parseInt($num);
+  $num1=$num+1;
+  var code=$('#c'+$num).val();
+  var idface=$('#f'+$num).val();
+  var code1=$('#c'+$num1).val();  
+  var radio =$("input[name='radio']:checked").val();     
+  console.log("id facebook",idface, ", id:",tempp,", Actual Numero:",$num, ", proximo numero:",$num1,", Proximo codigo:",code1, ", codigo:",code, ", album:",radio);
+  $.ajax({
+          url: 'http://tienda.ar/buscar/check/ajax/destroy',
+          type: 'GET',          
+          data: {code1:code1, radio:radio, tempp:tempp, idface:idface }
+          })
+              .done(function(data) { 
+                console.log(data["id"], data["idfacebook"], data["codeSig"], data["radio"]);
+                window.location.href = "http://tienda.ar/buscar/check?searchText="+data['codeSig']+"&radio="+data['radio']; 
+              })
+              .fail(function(data) {
+              })                
+              .always(function() {
+                console.log("complete");
+              }); 
+  window.location.href = "http://tienda.ar/buscar/check?searchText=10161&radio=cbeba"; 
+}
 
     
 </script>

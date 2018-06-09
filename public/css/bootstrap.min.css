@@ -2561,6 +2561,7 @@ th {
     margin-bottom: 20px
 }
 
+
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 8px;
     line-height: 1.42857143;
@@ -6954,4 +6955,11 @@ button.close {
     .hidden-print {
         display: none!important
     }
+}
+
+.table-wrapper-2 {
+    display: block;
+    max-height: 300px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
 }
