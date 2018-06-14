@@ -33,6 +33,13 @@ class Buscar extends Model
       'updated_at',
   ];
      
+  public static function nameFace($idface){
+    $apialbum="https://graph.facebook.com/v2.11/$idface?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=name";
+    $tools = json_decode(file_get_contents($apialbum));
+    $data = $tools->name;           
+    return ($data);      
+    }
+
   public static function dataface($album, $busca){
     $apialbum="https://graph.facebook.com/v2.11/$album?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=photos{name,picture,link}";
     $tools = json_decode(file_get_contents($apialbum));   

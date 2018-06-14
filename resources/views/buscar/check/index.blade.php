@@ -316,8 +316,7 @@ function elim(elemento) {
               })                
               .always(function() {
                 console.log("complete");
-              }); 
-  window.location.replace("http://tienda.ar/buscar/check?searchText=10161&radio=cbeba"); 
+              });    
 }
 
 function edit(elemento) {

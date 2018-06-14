@@ -166,6 +166,8 @@ class BuscarcheckController extends Controller
           $disp="";
         }
       }
+      $namefacebook=Buscar::nameFace($col2->idfacebook); 
+      $col2->name=$namefacebook;
 
       return view('buscar.check.index',["lista"=>$lista,"col2"=>$col2,"searchText"=>$query,"radio"=>$radio, "disp"=>$disp]);
 
@@ -374,9 +376,9 @@ class BuscarcheckController extends Controller
       $img=$col2->foto;
       $id=$col2->id;
       $name=$col2->name;
-                                                   
+      $namefacebook=Buscar::nameFace($col2->idfacebook);                                             
       #dd($col2);
-      return ["id"=>$id,"name"=>$name,"code"=>$code, "href"=>$href,"searchText"=>$query, "disp"=>$disp, "style"=>$style,"link"=>$link,"img"=>$img];
+      return ["id"=>$id,"name"=>$namefacebook,"code"=>$code, "href"=>$href,"searchText"=>$query, "disp"=>$disp, "style"=>$style,"link"=>$link,"img"=>$img];
 
   }
 }
