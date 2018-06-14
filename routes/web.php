@@ -17,15 +17,18 @@ Route::get('/', function () {
 });
 Route::get('buscar/check/ajax/destroy', 'BuscarcheckController@destroyAjax');
 Route::post('buscar/check/ajax/destroy', 'BuscarcheckController@destroyAjax');
+Route::get('buscar/check/ajax/edit', 'BuscarcheckController@editAjax');
+Route::post('buscar/check/ajax/edit', 'BuscarcheckController@editAjax');
 Route::get('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
 Route::post('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
 Route::resource('buscar/check', 'BuscarcheckController');
+Route::resource('buscar/comparar', 'CompararController');
 #Route::resource('buscar/scrap', 'ScrapController');
 Route::resource('buscar', 'BuscarController');
-
-#Route::get('sync/elimi', 'SyncController@elimi');
-#Route::resource('sync', 'SyncController');
-Route::resource('formavieja', 'FormaviejaController');
+Route::get('sync/elimi', 'SyncController@elimi');
+Route::get('sync/album', 'SyncController@album');
+Route::resource('sync', 'SyncController');
+#Route::resource('formavieja', 'FormaviejaController');
 
 #Route::get('importExport', 'MaatwebsiteDemoController@importExport');
 #Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');

@@ -161,10 +161,13 @@
                                   </div>
                             </td>                             
                             <td><button class="btn btn-default btn-sm" onclick="buscarAjax('#{{$bor->id}}')"> Buscar</button>
+                              <a href="" data-target="#modal-edit-{{$bor->id}}" data-toggle="modal"><button class="btn btn-info btn-sm">Edit</button></a>
                               <a href="" data-target="#modal-delete-{{$bor->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm" >Eliminar</button></a>
                             </td>
-                           
+                             <!--modal eliminar !-->
                              @include('buscar.check.modal')
+                             <!--modal edit !-->
+                             @include('buscar.check.modal-edit')
                            </tr>
                           
                            @php $n++; @endphp
@@ -282,7 +285,9 @@ function buscarAjaxIni(code){
   var radio =$("input[name='radio']:checked").val();
   $("#f"+idd).css({'background-color':'#A9D0F5'});
   var elem = document.getElementById("f"+idd);  
-  elem.scrollIntoView(true); 
+  if (elem){
+    elem.scrollIntoView(true); 
+  }
   console.log(code);     
 }
 
@@ -312,7 +317,29 @@ function elim(elemento) {
               .always(function() {
                 console.log("complete");
               }); 
-  window.location.href = "http://tienda.ar/buscar/check?searchText=10161&radio=cbeba"; 
+  window.location.replace("http://tienda.ar/buscar/check?searchText=10161&radio=cbeba"); 
+}
+
+function edit(elemento) {
+  var id =elemento;
+  var num=$('#d'+id).val();
+  var idface=$('#f'+num).val();
+  var name=$('#name'+num).val();
+  console.log("id:",id,",nº:",num,", idface:", idface, ", name:", name );
+   $.ajax({
+          url: 'http://tienda.ar/buscar/check/ajax/edit',
+          type: 'GET',          
+          data: {id:id, idface:idface, name:name}
+          })
+              .done(function(data) { 
+                console.log(data["id"], data["idfacebook"], data["name"], data['resp']);
+                
+              })
+              .fail(function(data) {
+              })                
+              .always(function() {
+                console.log("complete");
+              }); 
 }
 
     

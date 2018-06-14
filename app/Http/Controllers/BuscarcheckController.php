@@ -130,8 +130,13 @@ class BuscarcheckController extends Controller
           $col2->code="No existe Producto con el Codigo $query en el Album";
           $col2->foto="http://tienda.ar/img/1.png";
         }        
+        
+
         $html1 = $col2->style;        
         $html = "$html0$html1";
+        
+       
+        
         
         #$crawler = Goutte::request('GET', $html);
         $client = new Client();
@@ -219,13 +224,29 @@ class BuscarcheckController extends Controller
         $radio="cbeba";
        }
       
-       #$url="https://graph.facebook.com/v2.12/$idfacebook?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&method=delete";  
-       #$todo->delete();
-       #$resp = json_decode(file_get_contents($url));   
+       $url="https://graph.facebook.com/v2.12/$idfacebook?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&method=delete";  
+       $todo->delete();
+       $resp = json_decode(file_get_contents($url));   
        
        return ["id"=>$request->get('tempp'), "idfacebook"=>$idfacebook, "codeSig"=>$codeSig, "radio"=>$radio]; 
      
   }
+
+  public function editAjax(Request $request)
+  {
+       $todo=Formavieja::findOrFail($request->get('id'));       
+       $idfacebook=$request->get('idface');
+       $name=$request->get('name');      
+      
+       $url="https://graph.facebook.com/v2.12/$idfacebook?name=$name&access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&method=post";  
+       #$todo->name=$name;
+       #$todo->update();
+       $resp = json_decode(file_get_contents($url));   
+       
+       return ["id"=>$request->get('id'), "idfacebook"=>$idfacebook, "name"=>$name, "resp"=>$resp]; 
+     
+  }
+
   public function busquedaAjax(Request $request){
 
       $idalbum=mb_substr($request->get('code'),0,1); 

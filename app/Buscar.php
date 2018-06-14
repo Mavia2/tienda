@@ -60,7 +60,7 @@ class Buscar extends Model
     }
 
     public static function datafaceidalbum($album){
-    $apialbum="https://graph.facebook.com/v2.11/$album?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=photos{name,picture,link}";
+    $apialbum="https://graph.facebook.com/v2.11/$album?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=photos{name,picture,link,id,images}";
     $tools = json_decode(file_get_contents($apialbum));    
     $data = $tools->photos->data;     
     $next = $tools->photos->paging->next;
@@ -74,7 +74,8 @@ class Buscar extends Model
      $face=[];
 
     foreach ($data as $key => $value) {
-       $face[]=['pic'=>$value->picture, 'lin'=>$value->link, 'code'=>substr($value->name,0,5)];
+       $face[]=['pic'=>$value->picture, 'lin'=>$value->link, 'name'=>$value->name ,'code'=>substr($value->name,0,5), 'idfacebook'=>$value->id, 'images'=>$value->images[0]->source];
+       
       }
         
 

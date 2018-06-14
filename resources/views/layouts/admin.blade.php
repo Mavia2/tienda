@@ -117,7 +117,23 @@
                 <li><a href="/ventas/venta/create"><i class="fa fa-circle-o"></i> Nueva Venta</a></li>             
                 <li><a href="/ventas/detalleventa"><i class="fa fa-circle-o"></i> Listado Ventas</a></li>                
               </ul>
+            </li>            
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-image"></i> <span>Album - Productos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">                 
+                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Album</a></li>
+                  <li><a href="/buscar/check"><i class="fa fa-circle-o"></i> Check Disponibilidad</a></li>
+                   <li><a href="/sync"><i class="fa fa-circle-o"></i> Sincronizar Albumnes</a></li> 
+                 <li><a href="http://localhost:3000/subirproducto/subir_producto"><i class="fa fa-circle-o"></i> Subir a Album</a></li>
+                 <li><a href="/buscar/comparar"><i class="fa fa-circle-o"></i> Precios Competencia</a></li>
+                       
+              </ul>
             </li>
+
             <li class="treeview">
               <a href="/ventas/cliente">
                 <i class="fa fa-address-book" aria-hidden="true"></i>
@@ -128,20 +144,7 @@
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-user-secret"></i> <span>Album - Productos</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                 <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Album</a></li>
-                  <li><a href="/buscar/check"><i class="fa fa-circle-o"></i> Check Disponibilidad</a></li> 
-                 <li><a href="http://localhost:3000/subirproducto/subir_producto"><i class="fa fa-circle-o"></i> Descargar Web</a></li>
-                       
-              </ul>
-            </li>
-
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-users"></i> <span>Acceso</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">                
