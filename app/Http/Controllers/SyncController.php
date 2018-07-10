@@ -177,7 +177,7 @@ class SyncController extends Controller
           ->where('idfacebook',$idfacebookFace)     
           ->first();           
         if (!$db1){
-          $borr[]=['code'=>$key['code'],'style'=>" ",'idfacebook'=>$idfacebookFace ,'alb'=>$albdb, 'img'=>$key['images'],'namedb'=>" ", 'nameface'=>$key['name']];
+          $borr[]=['code'=>$key['code'],'style'=>" ",'idfacebook'=>$idfacebookFace ,'alb'=>$albdb, 'img'=>$key['images'],'namedb'=>" ", 'nameface'=>$key['name'], 'id'=>"no existe en db"];
         }
         $db2=$db
           ->where('idfacebook',$idfacebookFace) 
@@ -227,7 +227,7 @@ class SyncController extends Controller
                   ->where('idfacebook',$idfacebookFace)     
                   ->first();           
                     if (!$db1){
-                      $borr[]=['code'=>$key['code'],'style'=>" ",'idfacebook'=>$idfacebookFace ,'alb'=>$radio, 'img'=>$key['images'],'namedb'=>" ", 'nameface'=>$key['name']];
+                      $borr[]=['code'=>$key['code'],'style'=>" ",'idfacebook'=>$idfacebookFace ,'alb'=>$radio, 'img'=>$key['images'],'namedb'=>" ", 'nameface'=>$key['name'],'id'=>"no existe en db"];
                     }
                 $db2=$db
                   ->where('idfacebook',$idfacebookFace) 

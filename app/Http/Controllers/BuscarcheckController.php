@@ -80,15 +80,37 @@ class BuscarcheckController extends Controller
                       ->extract(('_text'));
                       
           $as4= preg_replace("/(\n|\t)/", '', $as4);
+
+          $as1=$crawler->filterXPath('//li[@class="width1"]')
+                      ->extract(('_text'));                      
+          $as1= preg_replace("/(\n|\t)/", '', $as1);
+
+          $as2=$crawler->filterXPath('//li[@class="width2"]')
+                      ->extract(('_text'));                      
+          $as2= preg_replace("/(\n|\t)/", '', $as2);
+
+          $as3=$crawler->filterXPath('//li[@class="width3"]')
+                      ->extract(('_text'));                      
+          $as3= preg_replace("/(\n|\t)/", '', $as3);
          
           $disp="";
           
+           foreach ($as1 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as2 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as3 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+
           foreach ($as4 as $key => $value) {           
             $disp="$disp $value";            
           }
           foreach ($as5 as $key => $value) {           
             $disp="$disp $value";            
-          }  
+          } 
           $disp=mb_substr($disp,6);
           $disp=str_replace(' ', '', $disp);        
          #dd($disp);
@@ -166,8 +188,11 @@ class BuscarcheckController extends Controller
           $disp="";
         }
       }
+     if($col2->idfacebook){
       $namefacebook=Buscar::nameFace($col2->idfacebook); 
       $col2->name=$namefacebook;
+     }
+      
 
       return view('buscar.check.index',["lista"=>$lista,"col2"=>$col2,"searchText"=>$query,"radio"=>$radio, "disp"=>$disp]);
 
@@ -291,9 +316,31 @@ class BuscarcheckController extends Controller
                       ->extract(('_text'));
                       
           $as4= preg_replace("/(\n|\t)/", '', $as4);
+
+          $as1=$crawler->filterXPath('//li[@class="width1"]')
+                      ->extract(('_text'));                      
+          $as1= preg_replace("/(\n|\t)/", '', $as1);
+
+          $as2=$crawler->filterXPath('//li[@class="width2"]')
+                      ->extract(('_text'));                      
+          $as2= preg_replace("/(\n|\t)/", '', $as2);
+
+          $as3=$crawler->filterXPath('//li[@class="width3"]')
+                      ->extract(('_text'));                      
+          $as3= preg_replace("/(\n|\t)/", '', $as3);
          
           $disp="";
           
+           foreach ($as1 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as2 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as3 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+
           foreach ($as4 as $key => $value) {           
             $disp="$disp $value";            
           }
@@ -346,7 +393,7 @@ class BuscarcheckController extends Controller
         
         #$crawler = Goutte::request('GET', $html);
         $client = new Client();
-        $crawler = $client->request('GET', $html);
+        $crawler = $client->request('GET', $html);        
         if ($crawler->filterXPath('//div[@id="primary-nohits"]')->count()>0){
           $disp="No hay Disponibilidad";
         }
@@ -360,6 +407,7 @@ class BuscarcheckController extends Controller
           }          
         }
         else{ 
+         
           $disp="";
         }
       }
@@ -376,7 +424,12 @@ class BuscarcheckController extends Controller
       $img=$col2->foto;
       $id=$col2->id;
       $name=$col2->name;
-      $namefacebook=Buscar::nameFace($col2->idfacebook);                                             
+      if ($col2->idfacebook){
+      $namefacebook=Buscar::nameFace($col2->idfacebook);  
+      }
+      else{
+       $namefacebook=$col2->name; 
+      }                                           
       #dd($col2);
       return ["id"=>$id,"name"=>$namefacebook,"code"=>$code, "href"=>$href,"searchText"=>$query, "disp"=>$disp, "style"=>$style,"link"=>$link,"img"=>$img];
 

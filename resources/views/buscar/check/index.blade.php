@@ -139,7 +139,7 @@
                             <input type="hidden" id="d{{$bor->id}}" class="form-control"  value="{{$n}}">
                             <input type="hidden" id="{{$bor->id}}" class="form-control"  value="{{$bor->code}}">   
                             <input type="hidden" id="c{{$n}}" class="form-control"  value="{{$bor->code}}">
-                            <input type="hidden" id="f{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">                                                
+                            <input type="hidden" id="fa{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">                                                
                             <td style="min-width: 25px;">{{$n}} </td>               
                             <td id="rad{{$n}}" style="min-width: 45px;">{{$radio}}</td>                           
                             <td style="min-width: 62px;">{{$bor->code}}</td>                                                     
@@ -299,7 +299,7 @@ function elim(elemento) {
   $num=parseInt($num);
   $num1=$num+1;
   var code=$('#c'+$num).val();
-  var idface=$('#f'+$num).val();
+  var idface=$('#fa'+$num).val();
   var code1=$('#c'+$num1).val();  
   var radio =$("input[name='radio']:checked").val();     
   console.log("id facebook",idface, ", id:",tempp,", Actual Numero:",$num, ", proximo numero:",$num1,", Proximo codigo:",code1, ", codigo:",code, ", album:",radio);
@@ -322,7 +322,7 @@ function elim(elemento) {
 function edit(elemento) {
   var id =elemento;
   var num=$('#d'+id).val();
-  var idface=$('#f'+num).val();
+  var idface=$('#fa'+num).val();
   var name=$('#name'+num).val();
   console.log("id:",id,",nº:",num,", idface:", idface, ", name:", name );
    $.ajax({

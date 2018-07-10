@@ -1,6 +1,4 @@
-<div class="modal fade"  role="dialog"  id="modal-delete-{{$bor->id}}">
-  {{Form::open(['action'=>array('BuscarcheckController@destroy',$bor->id ),'method'=>'delete'])}}
-    
+<div class="modal fade"  role="dialog"  id="modal-delete-{{$bor->id}}">    
     <div class="modal-dialog modal-sm" >
       <div class="modal-content">
         <div class="modal-header" style="background-color:#F4364C">
@@ -17,7 +15,6 @@
           <button type="button" class="btn btn-danger" id="btn-delete" onclick="elim('{{$bor->id}}')">Eliminar</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
         </div>
-      </div>
-  {{Form::Close()}}
+      </div>  
 </div>
 </div>
