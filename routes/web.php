@@ -21,6 +21,7 @@ Route::get('buscar/check/ajax/edit', 'BuscarcheckController@editAjax');
 Route::post('buscar/check/ajax/edit', 'BuscarcheckController@editAjax');
 Route::get('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
 Route::post('buscar/check/ajax', 'BuscarcheckController@busquedaAjax');
+Route::delete('buscar/check/destroySelected','BuscarcheckController@destroySelected');
 Route::resource('buscar/check', 'BuscarcheckController');
 Route::resource('buscar/comparar', 'CompararController');
 #Route::resource('buscar/scrap', 'ScrapController');

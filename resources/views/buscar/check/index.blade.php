@@ -15,7 +15,8 @@
                        <div id="abrirFaceboock"><a target="_blank" href="{{$col2->link}}"><button  type="button" class="btn btn-primary pull-right">Abrir Facebook</button></a></div></div>
                        
                        <div id="abrirWeb" class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                        @if ($radio=='hnena' || $radio=='hnene')<a target="_blank" href="http://www.hm.com/us/product/{{substr($col2->style,0,-2)}}?article={{substr($col2->style,0,-1)}}{{substr($col2->style,-1)}}">
+                        @if ($radio=='hnena' || $radio=='hnene')<a target="_blank" href="http://www2.hm.com/en_us/productpage.{{$col2->style}}.html">
+
                         @elseif (($radio=='auto' || !$radio))
                              @if (mb_substr($searchText,0,1)=="1" || mb_substr($searchText,0,1)=="2" || mb_substr($searchText,0,1)=="3" || mb_substr($searchText,0,1)=="4" || mb_substr($searchText,0,1)=="7") 
                               <a target="_blank" href="http://www.carters.com/on/demandware.store/Sites-Carters-Site/default/Search-Show?q={{$col2->style}}">
@@ -32,7 +33,7 @@
                       <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
                         <div class="table-responsive">      
                           <table class="table table-striped table-condensed table-hover " id="example">
-                            <thead style="background-color:#A9D0F5">                                
+                            <thead style="background-color:#A9D0F5">                                                            
                               <th style="text-align: center">Codigo Tienda</th>    
                               <th style="text-align: center">Style</th>
                               <th style="text-align: center">Descripcion</th>
@@ -41,7 +42,7 @@
                                    
                             </thead> 
                             
-                            <tr style="text-align: center">                               
+                            <tr style="text-align: center">                                                           
                               <td><textarea class="form-control text-center" readonly cols ="5" rows="14" id="p4">{{$col2->code}}</textarea></td>
                               <td><textarea class="form-control text-center" readonly cols ="5" rows="14" id="p1">{{$col2->style}}</textarea></td>
                               <td><textarea class="form-control" readonly cols ="12" rows="14" id="p5">{{$col2->name}}</textarea></td>
@@ -122,24 +123,34 @@
                 <div class="panel-body">                
                   <div class="row">
                     <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">              
-                      <div>                      
+                      <div> 
+                       {{Form::open(['action'=>('BuscarcheckController@destroySelected'),'method'=>'delete'])}}                      
                         <table class="table table-striped table-condensed table-hover table-responsive" id="example" >
                           <thead style="background-color:#A9D0F5; width:100%; display: table;"> 
-                            <th style="text-align: center; width: 35px">nº </th>                           
-                            <th style="text-align: center; width: 58px">Album </th>                           
-                            <th style="text-align: center; width: 78px">Codigo</th> 
-                            <th style="text-align: center; width: 85px">Style</th>
+                            <th style="text-align: center">Ck</th> 
+                            <th style="text-align: center; width: 25px">nº </th>                           
+                            <th style="text-align: center; width: 38px">Album </th>                           
+                            <th style="text-align: center; width: 68px">Codigo</th> 
+                            <th style="text-align: center; width: 75px">Style</th>
                             <th style="text-align: center; width: 70px">Imagen</th>
-                            <th style="text-align: center; width: 186px">Accion</th>                                             
+                            <th style="text-align: center; width: 186px"><button class="btn btn-danger btn-sm" onclick="">Elim. Selec.</button></th>                                             
                           </thead> 
-                          <tbody style="display: block; overflow-y: auto; height: 590px">
+                          <tbody style="display: block; overflow-y: auto; height: 590px">       
+                            
+
                            @php $n=1;@endphp
                            @foreach ($lista as $bor)   
                           <tr style="text-align: center; width:100%; display: table; " id="f{{$bor->id}}"> 
                             <input type="hidden" id="d{{$bor->id}}" class="form-control"  value="{{$n}}">
                             <input type="hidden" id="{{$bor->id}}" class="form-control"  value="{{$bor->code}}">   
                             <input type="hidden" id="c{{$n}}" class="form-control"  value="{{$bor->code}}">
-                            <input type="hidden" id="fa{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">                                                
+                            <input type="hidden" id="fa{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">
+                            <td>
+                              <div class="form-check">
+                                 <input type="checkbox" class="form-check-input" name="checkbox[]"  value="{{ $bor->id }}" "id="exampleCheck1">                            
+                              </div>
+                            </td> 
+
                             <td style="min-width: 25px;">{{$n}} </td>               
                             <td id="rad{{$n}}" style="min-width: 45px;">{{$radio}}</td>                           
                             <td style="min-width: 62px;">{{$bor->code}}</td>                                                     
@@ -160,7 +171,7 @@
                                     </div>
                                   </div>
                             </td>                             
-                            <td><button class="btn btn-default btn-sm" onclick="buscarAjax('#{{$bor->id}}')"> Buscar</button>
+                            <td><button type="button" class="btn btn-default btn-sm" onclick="buscarAjax('#{{$bor->id}}')"> Buscar</button>
                               <a href="" data-target="#modal-edit-{{$bor->id}}" data-toggle="modal"><button class="btn btn-info btn-sm">Edit</button></a>
                               <a href="" data-target="#modal-delete-{{$bor->id}}" data-toggle="modal"><button class="btn btn-danger btn-sm" >Eliminar</button></a>
                             </td>
@@ -172,6 +183,7 @@
                           
                            @php $n++; @endphp
                           @endforeach
+                           {{Form::Close()}}   
                           </tbody>
                         </table>                       
                       </div>                      

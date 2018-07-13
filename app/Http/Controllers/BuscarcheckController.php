@@ -60,7 +60,8 @@ class BuscarcheckController extends Controller
         }     
         $html1 =substr($col2->style,0,-2);
         $html2 =$col2->style;
-        $html = "http://www.hm.com/us/product/$html1?article=$html2";      
+        #$html = "http://www.hm.com/us/product/$html1?article=$html2"; 
+        $html ="http://www2.hm.com/en_us/productpage.$html2.html";     
 
         #$crawler = Goutte::request('GET', $html);
         $client = new Client();
@@ -241,6 +242,13 @@ class BuscarcheckController extends Controller
       #dd($todo, $request->get('idfacebook'));
 	}
 
+  public function destroySelected(Request $request)
+  {
+       $delsel=$request->input('checkbox');
+       #dd($delsel);
+        return Redirect::back(); 
+  }
+
   public function destroyAjax(Request $request)
   {
        $todo=Formavieja::findOrFail($request->get('tempp'));       
@@ -296,8 +304,8 @@ class BuscarcheckController extends Controller
         }      
         $html1 =substr($col2->style,0,-2);
         $html2 =$col2->style;
-        $html = "http://www.hm.com/us/product/$html1?article=$html2";      
-
+        #$html = "http://www.hm.com/us/product/$html1?article=$html2";      
+        $html ="http://www2.hm.com/en_us/productpage.$html2.html"; 
         #$crawler = Goutte::request('GET', $html);
         $client = new Client();
         $crawler = $client->request('GET', $html);
@@ -416,7 +424,8 @@ class BuscarcheckController extends Controller
       }      
       else {
         $art=substr($col2->style,0,-2);
-        $href="http://www.hm.com/us/product/$art?article=$col2->style";
+        #$href="http://www.hm.com/us/product/$art?article=$col2->style";
+        $href ="http://www2.hm.com/en_us/productpage.$col2->style.html"; 
       }
       $code=$col2->code;
       $style=$col2->style;
