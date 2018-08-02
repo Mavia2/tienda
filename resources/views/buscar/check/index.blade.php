@@ -44,7 +44,7 @@
                             
                             <tr style="text-align: center">                                                           
                               <td><textarea class="form-control text-center" readonly cols ="5" rows="14" id="p4">{{$col2->code}}</textarea></td>
-                              <td><textarea class="form-control text-center" readonly cols ="5" rows="14" id="p1">{{$col2->style}}</textarea></td>
+                              <td><textarea class="form-control text-center" readonly cols ="6" rows="14" id="p1">{{$col2->style}}</textarea></td>
                               <td><textarea class="form-control" readonly cols ="12" rows="14" id="p5">{{$col2->name}}</textarea></td>
                               <td><div id="p2"><textarea class="form-control text-center" readonly cols ="12" rows="14">{{$disp}}</textarea></div></td>
                                <td><div id="p3"><img src="{{$col2->foto}}" width="195px"></div></td>
@@ -117,14 +117,20 @@
 </div>                           
  {{Form::close()}}
 <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
-  <div class="row">
+  <div class="row">    
     <div class="tab-content">               
               <div class="panel panel-default" style="margin-bottom: 0px">
                 <div class="panel-body">                
-                  <div class="row">
-                    <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">              
+                  <div class="row">                   
+                    <div class="col-lg-12 col-md-4 col-sm-4 col-xs-4">
+                       @if(session('success'))
+                          <div class="col-md-12 alert alert-success">
+                            {{session('success')}}
+                          </div>
+                        @endif              
                       <div> 
-                       {{Form::open(['action'=>('BuscarcheckController@destroySelected'),'method'=>'delete'])}}                      
+                        <form action="{{url("buscar/check/del")}}" method="post">
+                        {!! csrf_field() !!}          
                         <table class="table table-striped table-condensed table-hover table-responsive" id="example" >
                           <thead style="background-color:#A9D0F5; width:100%; display: table;"> 
                             <th style="text-align: center">Ck</th> 
@@ -133,7 +139,7 @@
                             <th style="text-align: center; width: 68px">Codigo</th> 
                             <th style="text-align: center; width: 75px">Style</th>
                             <th style="text-align: center; width: 70px">Imagen</th>
-                            <th style="text-align: center; width: 186px"><button class="btn btn-danger btn-sm" onclick="">Elim. Selec.</button></th>                                             
+                            <th style="text-align: right; width: 186px"><button class="btn btn-danger btn-sm" onclick="">Elim. Selec.</button></th>                                             
                           </thead> 
                           <tbody style="display: block; overflow-y: auto; height: 590px">       
                             
@@ -147,7 +153,7 @@
                             <input type="hidden" id="fa{{$n}}" class="form-control"  value="{{$bor->idfacebook}}">
                             <td>
                               <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" name="checkbox[]"  value="{{ $bor->id }}" "id="exampleCheck1">                            
+                                 <input type="checkbox" class="form-check-input" name="cbox[]"  value="{{ $bor->id }}">   
                               </div>
                             </td> 
 
@@ -183,7 +189,7 @@
                           
                            @php $n++; @endphp
                           @endforeach
-                           {{Form::Close()}}   
+                           </form> 
                           </tbody>
                         </table>                       
                       </div>                      
@@ -224,7 +230,7 @@ function copyToClipboard(elemento) {
                 $("#p4").text(data["code"]);
                 $("#p1").text(data["style"]);
                 $("#p5").text(data["name"]);
-                $("#p2").html("<textarea class='form-control text-center' readonly cols ='12' rows='14'>"+data["disp"]+"</textarea>");
+                $("#p2").html("<textarea class='form-control text-center' readonly cols ='12' rows='14'>"+data["disp"]+'\r'+data["pre"]+"</textarea>");
                 $("#p3").html("<img src='"+data["img"]+"' width='195px'>");
                 $("#abrirFaceboock").html("<a target='_blank' href='"+data["link"]+"'><button  type='button' class='btn btn-primary pull-right'>Abrir Facebook</button></a></div>");
                 $("#abrirWeb").html("<a target='_blank' href='"+data["href"]+"'><button type='button' class='btn btn-default pull-right'>Abrir Web</button></a>");               

@@ -17,7 +17,7 @@
                    @if (mb_substr($searchText,0,1)=="1" || mb_substr($searchText,0,1)=="2" || mb_substr($searchText,0,1)=="3" || mb_substr($searchText,0,1)=="4" || mb_substr($searchText,0,1)=="7") 
                     <a target="_blank" href="http://www.carters.com/on/demandware.store/Sites-Carters-Site/default/Search-Show?q={{$col2->style}}">
                    @else
-                   <a target="_blank" href="http://www.hm.com/us/product/{{substr($col2->style,0,-2)}}?article={{substr($col2->style,0,-1)}}{{substr($col2->style,-1)}}">
+                   <a target="_blank" href="http://www2.hm.com/en_us/productpage.{{$col2->style}}.html">
                    @endif            
               <button type="button" class="btn btn-primary">Abrir Web</button></a>           
             </div>

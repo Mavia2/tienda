@@ -248,42 +248,10 @@ class BuscarController extends Controller
         if ($col2 === NULL){
           $col2=new Buscar;
           $col2->code="No existe Producto con el Codigo $query en el Album";
-          $col2->foto="http://tienda.ar/img/1.png";
-          
-        }             
-        $html1 =substr($col2->style,0,-2);
-        $html2 =$col2->style;
-        $html = "http://www.hm.com/us/product/$html1?article=$html2";      
-
-        #$crawler = Goutte::request('GET', $html);
-        $client = new Client();
-        $crawler = $client->request('GET', $html);
-
-        if ($crawler->filterXPath('//button[@class="btn bag large disabled soldOut"]')->count()>0){
-          $disp="No hay Disponibilidad";
-        }        
-        else{ 
-          #$disp="Hay talles varios, ver!!";
-          $as5=$crawler->filterXPath('//li[@class="width5"]')
-                      ->extract(('_text'));
-                      
-          $as5= preg_replace("/(\n|\t)/", '', $as5);
-         
-          $as4=$crawler->filterXPath('//li[@class="width4"]')
-                      ->extract(('_text'));
-                      
-          $as4= preg_replace("/(\n|\t)/", '', $as4);
-         
-          $disp="";
-          
-          foreach ($as4 as $key => $value) {           
-            $disp="$disp $value";            
-          }
-          foreach ($as5 as $key => $value) {           
-            $disp="$disp $value";            
-          }         
-          $disp=str_replace(' ', '', $disp);
-        }    
+          $col2->foto="http://tienda.ar/img/1.png";          
+        }
+        $disp=Buscar::dispHym($col2);            
+           
       }    
       elseif($idalbum =="7"){
         $html0 = "http://www.carters.com/on/demandware.store/Sites-Carters-Site/default/Search-Show?q=";

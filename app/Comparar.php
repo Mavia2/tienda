@@ -13,15 +13,18 @@ class Comparar extends Model
   private static function dataFaceBuscaAlbum($idalbum){
     $apialbum="https://graph.facebook.com/v2.11/$idalbum?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=photos{name,picture,link,images}";
     $tools = json_decode(file_get_contents($apialbum));   
-    $data = $tools->photos->data;       
-    $next = $tools->photos->paging->next;
-    $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$next))); 
-    $data=array_merge($data,$tools1->data); 
- 
-    while (isset($tools1->paging->next)) {
-       $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$tools1->paging->next))); 
-       $data=array_merge($data,$tools1->data); 
-    };
+    $data = $tools->photos->data;   
+    # isset() will return false if property is null or not exist
+    if(isset($tools->photos->paging->next)){    
+      $next = $tools->photos->paging->next;
+      $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$next))); 
+      $data=array_merge($data,$tools1->data); 
+   
+      while (isset($tools1->paging->next)) {
+         $tools1 = json_decode(file_get_contents(str_replace ("limit=25","limit=100",$tools1->paging->next))); 
+         $data=array_merge($data,$tools1->data); 
+      };
+    }
     
     $face="";   
     
@@ -71,12 +74,9 @@ class Comparar extends Model
       }
       else{
       $face=static::dataFaceBuscaAlbum($idalbum);    
-      }
-
-      return ($face);
-    }#fin del if
-    
-    else{
+      }     
+    }#fin del if    
+    elseif($comparar=="moda"){
       if($album=="cbeba"){
         $idalbum="1095284717218837";
       }
@@ -102,9 +102,38 @@ class Comparar extends Model
         $idalbum="1095536650526977";
       }
 
-      $face=static::dataFaceBuscaAlbum($idalbum);    
-
-      return ($face);
-    }#fin del else       
+      $face=static::dataFaceBuscaAlbum($idalbum);      
+    }#fin del elseif 
+    # else es tienda
+    else{
+      if($album=="cbeba"){
+        $idalbum="1474268852893493";
+      }
+      elseif ($album=="cbebe") {
+       $idalbum="1473359842984394";   
+      }
+      elseif ($album=="cnena") {
+      $idalbum="1476399469347098";   
+      }
+      elseif ($album=="cnene") {
+        $idalbum="1475944139392631";  
+      }
+      elseif ($album=="hnena") {
+         $idalbum="1472453289741716";   
+      }
+      elseif ($album=="hnene") {
+        $idalbum="1472916719695373";  
+      }
+      elseif ($album=="skip") {
+        $idalbum="1837283549925353"; 
+      }
+      if ($album=="osh") {
+        $face=[];
+      }
+      else{
+      $face=static::dataFaceBuscaAlbum($idalbum); 
+      }     
+    }#fin del elseif 
+    return ($face);
   }
 }

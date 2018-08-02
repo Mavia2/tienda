@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\File;
 use Storage;
+use Goutte\Client;
 
 
 
@@ -33,6 +34,54 @@ class Buscar extends Model
       'updated_at',
   ];
      
+  public static function dispHym($col2){
+        $html2 =$col2->style;        
+        $html ="http://www2.hm.com/en_us/productpage.$html2.html";         
+        $client = new Client();
+        $crawler = $client->request('GET', $html);
+        if ($crawler->filterXPath('//button[@class="item button fluid button-big button-buy js-open-size-selector button-disabled"]')->count()>0){
+          $disp="No hay Disponibilidad";
+        }        
+        else{          
+          $as5=$crawler->filterXPath('//li[@class="width5"]')
+                      ->extract(('_text'));                      
+          $as5= preg_replace("/(\n|\t)/", '', $as5); 
+              
+          $as4=$crawler->filterXPath('//li[@class="width4"]')
+                      ->extract(('_text'));                      
+          $as4= preg_replace("/(\n|\t)/", '', $as4);
+          $as1=$crawler->filterXPath('//li[@class="width1"]')
+                      ->extract(('_text'));                      
+          $as1= preg_replace("/(\n|\t)/", '', $as1);
+          $as2=$crawler->filterXPath('//li[@class="width2"]')
+                      ->extract(('_text'));                      
+          $as2= preg_replace("/(\n|\t)/", '', $as2);
+          $as3=$crawler->filterXPath('//li[@class="width3"]')
+                      ->extract(('_text'));                      
+          $as3= preg_replace("/(\n|\t)/", '', $as3);         
+          $disp="";          
+           foreach ($as1 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as2 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as3 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as4 as $key => $value) {           
+            $disp="$disp $value";            
+          }
+          foreach ($as5 as $key => $value) {           
+            $disp="$disp $value";            
+          } 
+          $disp=mb_substr($disp,6);
+          $disp=str_replace(' ', '', $disp);
+
+          return ($disp); 
+        }
+      }
+
   public static function nameFace($idface){
     $apialbum="https://graph.facebook.com/v2.11/$idface?access_token=EAAUJuPkcQtkBAAaM9R5q2YZAmSFXeJDh5NMZBskyZBdXiahvOmj54j6ryDWybVJlBUb75avyM4aJ4x2vUiCtZAF4vAOV9OclIK6ZACPOKTbcUMNMdkGrc7s8av8g6VoHCebU3ArjUlYtyfZCZBEm3eRjZBDcUpKvfd86qh7nj0N3UgZDZD&fields=name";
     $tools = json_decode(file_get_contents($apialbum));

@@ -126,10 +126,10 @@
               </a>
               <ul class="treeview-menu">                 
                  <li><a href="/buscar"><i class="fa fa-circle-o"></i> Buscar en Album</a></li>
-                  <li><a href="/buscar/check"><i class="fa fa-circle-o"></i> Check Disponibilidad</a></li>
-                   <li><a href="/sync"><i class="fa fa-circle-o"></i> Sincronizar Albumnes</a></li> 
+                  <li><a href="/buscar/check"><i class="fa fa-circle-o"></i> Check Disponibilidad</a></li>      
                  <li><a href="http://localhost:3000/subirproducto/subir_producto"><i class="fa fa-circle-o"></i> Subir a Album</a></li>
                  <li><a href="/buscar/comparar"><i class="fa fa-circle-o"></i> Precios Competencia</a></li>
+                  <li><a href="/sync"><i class="fa fa-circle-o"></i> Sincronizar Albumnes</a></li>
                        
               </ul>
             </li>

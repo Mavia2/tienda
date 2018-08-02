@@ -25,14 +25,14 @@ class CompararController extends Controller
       if(!$album){
         $album="cbeba";
       } 
-      
+      $tienda= Comparar::dataFaceComparar("tienda",$album);
       $nini= Comparar::dataFaceComparar("nini",$album);
       $moda= Comparar::dataFaceComparar("moda",$album);           
       
       $filtro=["cbeba"=>"Carter´s Bebas","cbebe"=>"Carter´s Bebes", 'cnena'=>"Carter´s Nenas", 'cnene'=>"Carter´s Nenes", 'hnena'=>"HyM Nenas y bebas", 'hnene'=>"HyM Nenes y bebes", 'skip'=>"Skip-Hop", 'osh'=>"Oshkosh Moda" ];
   
     
-     return view('buscar.comparar.index',["nini"=>$nini, "moda"=>$moda, "filtro"=>$filtro, "album"=>$album]);        
+     return view('buscar.comparar.index',["tienda"=>$tienda,"nini"=>$nini, "moda"=>$moda, "filtro"=>$filtro, "album"=>$album]);        
   	}
 
  

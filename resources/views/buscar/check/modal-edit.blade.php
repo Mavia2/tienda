@@ -8,7 +8,7 @@
         <div class="modal-body">
              <input type="hidden" class="form-control" name="id" value="{{$bor->id}}">
              <input type=hidden name="idfacebook" value="{{$bor->idfacebook}}"> 
-             <textarea  rows="8" name="name" id="name{{$n}}" value="{{$bor->name}}" class="form-control" placeholder="Comentarios...">{{$bor->name}}</textarea>                   
+             <textarea  rows="38" name="name" id="name{{$n}}" value="{{$bor->name}}" class="form-control" placeholder="Comentarios...">{{$bor->name}}</textarea>                   
              <img src="{{$bor->foto}}" width="260px" style="margin: auto">
         </div>
         <div class="modal-footer">
