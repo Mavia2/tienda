@@ -51,9 +51,9 @@
             <td style="text-align: center">U$S {{number_format($sto->envio+$sto->total+$sto->textra,0,',','.')}}</td>
           <td>{{$sto->comentarios}}</td>
           <td>
-            <a href="{{URL::action('PedidosController@show',$sto->idpedidos)}}"><button class="btn btn-primary btn-sm">Det</button></a>
-            <a href="{{URL::action('PedidosController@edit',$sto->idpedidos)}}"><button class="btn btn-info btn-sm">Edt</button></a>             
-            <a href="" data-target="#modal-delete-{{$sto->idpedidos}}" data-toggle="modal"><button class="btn btn-danger btn-sm">Elmr</button></a>
+            <a href="{{URL::action('PedidosController@show',$sto->idpedidos)}}"><button class="btn btn-primary btn-sm"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>
+            <a href="{{URL::action('PedidosController@edit',$sto->idpedidos)}}"><button class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>             
+            <a href="" data-target="#modal-delete-{{$sto->idpedidos}}" data-toggle="modal"><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
           </td>
         </tr>
         @include('compra.pedidos.modal')

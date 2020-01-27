@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-<div class="thumbnail" Style=" min-height:180px; margin-bottom:5px; margin-right:3px"><center><vcenter><img src="{{$img->imagen}}" width="160px"></vcenter></center></div>
+<div class="thumbnail" Style=" min-height:180px; margin-bottom:5px; margin-right:3px"><center><vcenter><img src="{{$img->imagen}}" width="140px"></vcenter></center></div>
     
       <table class="table table-condensed" style="text-align: center; font-size: 14px">
           <thead style="background-color:#A9D0F5; height:10px">
@@ -13,7 +13,7 @@
 
                   <tr>
                     <td>{{$ne}}</td>  
-                    <td>{{$w->usuario}}</td>                                            
+                    <td class="text-uppercase"><b>{{$w->usuario}}</b></td>                                            
                   </tr>
               @endforeach
          </table>

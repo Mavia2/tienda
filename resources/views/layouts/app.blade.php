@@ -71,8 +71,7 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
-                                     <li><a href="{{ url('/register') }}">Register</a></li>
-                                     <li>   <a href="/facebook/login">Login with Facebook</a></li>
+                                     <li><a href="{{ url('/register') }}">Register</a></li>                  
                                 </ul>
                             </li>
                         @endif

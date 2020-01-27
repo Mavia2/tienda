@@ -25,7 +25,7 @@ class DetalleController extends Controller
         
          else{
              
-             if (strlen($cod)==10 || (substr($cod, -1)=="Y") || (substr($cod, -1)=="M")){
+             if (strlen($cod)==10 && ((substr($cod, -1)=="Y") || (substr($cod, -1)=="M"))){
                 $cod1=substr($cod,0,5);
                 $cod2=substr($cod,5);
                 
@@ -34,10 +34,14 @@ class DetalleController extends Controller
              }
              elseif (strlen($cod)<10) {
                 $cod1=substr($cod,0,5);
-                $cod2=substr($cod,5);
-                
-                         
+                $cod2=substr($cod,5);                         
                 $cod=$cod1."-".$cod2;
+                          }
+             elseif (strlen($cod)>20) {
+                $cod1=substr($cod,2,10);
+                $cod2=substr(explode("_",$cod )[1],6);                         
+                $cod=$cod1.$cod2;
+                #dd( $cod, $cod1, $cod2);
                           }             
              else {
                 $cod1=substr($cod,0,5);
@@ -46,7 +50,7 @@ class DetalleController extends Controller
                 $cod2=trim($cod2);          
                 $cod=$cod1."-".$cod2;
              }
-          #dd($cod, $cod1, $cod2);
+          
          }
             
          $a=$request->get('idpedidos');
@@ -59,7 +63,7 @@ class DetalleController extends Controller
            ->where('pe.idpedidos', $request->get('idpedidos'))  
            ->where('pro.codebar','LIKE',$cod)
            ->get();
-          
+         #dd($a, $cod, $cod1, $cod2, $detalle);
            
 
            Return response()->json($detalle);
@@ -100,6 +104,7 @@ class DetalleController extends Controller
           ->select('p.imagen')
           ->where('do.iddetalleorden',$request->get('id'))
           ->first();
+          
           
         return view("ventas.venta.venta", ["venta"=>$venta,"img"=>$img]);
         #Return response()->json($ven);

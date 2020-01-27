@@ -75,11 +75,11 @@
            @endif
           </td>
           <td style="text-align: center"><span data-toggle="modal" data-target="#cModal{{$nx}}" >{{$per->vcomentario}}</span></td>
-          <td style="min-width:180px">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#shwModal{{$nx}}"  href="/ventas/venta/{{$per->idventa}}">Detalle</button>
-            <a href="{{URL::action('VentaController@edit',$per->idventa)}}"><button class="btn btn-info btn-sm">Editar</button></a>
+          <td style="min-width:110px">
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#shwModal{{$nx}}"  href="/ventas/venta/{{$per->idventa}}"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+            <a href="{{URL::action('VentaController@edit',$per->idventa)}}"><button class="btn btn-info btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>
             
-            <a href="" data-target="#modal-delete-{{$per->idventa}}" data-toggle="modal"><button class="btn btn-danger btn-sm">Eliminar</button></a>
+            <a href="" data-target="#modal-delete-{{$per->idventa}}" data-toggle="modal"><button class="btn btn-danger btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
           </td>
         </tr>
         @include('ventas.venta.modal')

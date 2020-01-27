@@ -46,9 +46,9 @@
           
           
           <td>
-            <a href="{{URL::action('OrdenController@edit',$sto->idorden)}}"><button class="btn btn-info">Editar</button></a>
-             <a href="{{URL::action('OrdenController@show',$sto->idorden)}}"><button class="btn btn-primary">Detalles</button></a>
-            <a href="" data-target="#modal-delete-{{$sto->idorden}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+            <a href="{{URL::action('OrdenController@show',$sto->idorden)}}"><button class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button></a>
+            <a href="{{URL::action('OrdenController@edit',$sto->idorden)}}"><button class="btn btn-info"><i class="fa fa-pencil" aria-hidden="true"></i></button></a>             
+            <a href="" data-target="#modal-delete-{{$sto->idorden}}" data-toggle="modal"><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
           </td>
         </tr>
         @include('compra.orden.modal')

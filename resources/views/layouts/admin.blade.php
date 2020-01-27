@@ -149,6 +149,18 @@
               </a>
               <ul class="treeview-menu">                
                 <li><a href="/login"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li>
+                      <a href="{{ url('/logout') }}"
+                          onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                        <i class="fa fa-circle-o"></i>
+                          Logout
+                      </a>
+
+                      <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                          {{ csrf_field() }}
+                      </form>
+                </li>
               </ul>
             </li>
              
